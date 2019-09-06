@@ -8,6 +8,8 @@ import thunk from 'redux-thunk';
 import App from './App';
 // core redux
 import reducer from './store/reducers/reducers';
+//css
+import "./assets/css/material-dashboard-react.css?v=1.7.0";
 
 
 // redux

@@ -52,10 +52,14 @@ export const checkAuthTimeout = expirationTime => {
 export const authLogin = (username, password) => {
     return dispatch => {
         dispatch(authStart());
+        const headers = {
+            'Content-Type': 'application/json',
+            'Accept-Language': 'es-ES,es;q=0.8',
+          };
         axios.post(backendUrl + '/core/login_token/', { //send the login to the server
             username: username,
             password: password
-        })
+        }, {headers})
         .then(res => {
             const token = res.data.token;
             const name = res.data.name;
