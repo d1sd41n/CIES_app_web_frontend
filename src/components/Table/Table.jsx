@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
 
 
 function Table({ ...props }) {
+  console.log(props)
   const classes = useStyles();
 
 

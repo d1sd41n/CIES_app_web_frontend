@@ -9,6 +9,7 @@ import Wc from "@material-ui/icons/Wc";
 import Users from "./views/Users/Users.jsx";
 import CreateUser from "./views/Users/CreateUser.jsx";
 import Visitors from "./views/Visitors/Visitors.jsx";
+import EditVisitor from "./views/Visitors/EditVisitor.jsx";
 // import UserProfile from "views/UserProfile/UserProfile.jsx";
 // import TableList from "views/TableList/TableList.jsx";
 // import Typography from "views/Typography/Typography.jsx";
@@ -44,6 +45,14 @@ const dashboardRoutes = [
     name: "Visitantes",
     icon: Wc,
     component: Visitors,
+    layout: "/admin"
+  },
+  {
+    sidebar: true,
+    path: "/editarvisitante",
+    name: "Editar Visitante",
+    icon: Wc,
+    component: EditVisitor,
     layout: "/admin"
   },
   // {

@@ -1,18 +1,23 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../utility';
 
-// Auth ###########################################
+// Initital state ###########################################
 const initialState = {
+    //user variables
     token: null,
-    error: null, 
-    loading: false,
-    authLoading: false,
     name: null,
     last_name: null,
+    //general variables
+    error: null, 
+    loading: false,
     data: [],
     requestSuccess : null,
+    item_id: null,
+    //auth variables
+    authLoading: false,
 }
 
+// Auth ###########################################
 const authStart = (state, action) => {
     return updateObject(state, {
         error: null,
@@ -48,7 +53,8 @@ const authLogout = (state, action) => {
 const getDataStart = (state, action) => {
     return updateObject(state, {
         error: null,
-        loading: true
+        loading: true,
+        data: [],
     });
 }
 
