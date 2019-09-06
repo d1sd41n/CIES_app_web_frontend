@@ -174,7 +174,7 @@ function SignIn(props) {
 
 const mapStateToProps = (state) => {
   return {
-      loading: state.loading,
+      loading: state.authLoading,
       error: state.error,
       isAuthenticated: state.token !== null
   }

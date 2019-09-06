@@ -6,6 +6,7 @@ const initialState = {
     token: null,
     error: null, 
     loading: false,
+    authLoading: false,
     name: null,
     last_name: null,
     data: [],
@@ -15,7 +16,7 @@ const initialState = {
 const authStart = (state, action) => {
     return updateObject(state, {
         error: null,
-        loading: true
+        authLoading: true
     });
 }
 
@@ -23,7 +24,7 @@ const authSuccess = (state, action) => {
     return updateObject(state, {
         token: action.token,
         error: null,
-        loading: false,
+        authLoading: false,
         name: action.name,
         last_name: action.last_name
     });
@@ -32,7 +33,7 @@ const authSuccess = (state, action) => {
 const authFail = (state, action) => {
     return updateObject(state, {
         error: action.error,
-        loading: false
+        authLoading: false
     });
 }
 

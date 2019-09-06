@@ -45,7 +45,6 @@ class AdminNavbarLinks extends React.Component {
   
 
   render() {
-    console.log(this.props);
     const { classes } = this.props;
     const { openNotifcation, openProfile } = this.state;
     return (
