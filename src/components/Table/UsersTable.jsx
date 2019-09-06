@@ -57,7 +57,7 @@ function Table({ ...props }) {
     {errorMessage }
     
     <MaterialTable
-      title="Editable Example"
+      title=""
       columns={props.tableHead}
       data={props.data}
       actions={[

@@ -3,10 +3,12 @@ import Dashboard from "@material-ui/icons/Dashboard";
 import People from "@material-ui/icons/People";
 import Person from "@material-ui/icons/Person";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
+import Wc from "@material-ui/icons/Wc";
 // core components/views for Admin layout
 // import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import Users from "./views/Users/Users.jsx";
 import CreateUser from "./views/Users/CreateUser.jsx";
+import Visitors from "./views/Visitors/Visitors.jsx";
 // import UserProfile from "views/UserProfile/UserProfile.jsx";
 // import TableList from "views/TableList/TableList.jsx";
 // import Typography from "views/Typography/Typography.jsx";
@@ -34,6 +36,14 @@ const dashboardRoutes = [
     name: "Agregar Usuario",
     icon: People,
     component: CreateUser,
+    layout: "/admin"
+  },
+  {
+    sidebar: true,
+    path: "/visitantes",
+    name: "Visitantes",
+    icon: Wc,
+    component: Visitors,
     layout: "/admin"
   },
   // {

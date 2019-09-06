@@ -1,3 +1,12 @@
+### Notas del desarrollador
+1- se debe cambiar el error 400 cuando al llenar un formulario los campos no son validos, ya que el 400 siendo general puede ocurrir porque los campos son invalidos, porque no hya coneccion a internet etc,
+hay que hacer que los campos invalidos sean diferentes a 400.
+
+2- la api visitantes /core/companies/{id_company}/visitors/ entrega todos los usuarios de la compañia y no de una sola sede.
+
+3- En visitantes no se muestra de momento ni fecha de registro, persona quien lo registro y sede donde se registro.
+
+--------------------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
