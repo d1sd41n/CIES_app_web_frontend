@@ -38,7 +38,7 @@ function Table({ ...props }) {
           errorMessage = ( // if the error is not invalid auth credentials, shows whatever error is
             <div>
               <br /><hr className={classes.hr} />
-              <p>{"ERROR: " + props.error.message}</p>
+              <p style={{color:"red"}}>{"ERROR: " + props.error.message}</p>
               <hr className={classes.hr} /><br />
             </div>
         );

@@ -148,8 +148,9 @@ export const getData = (url) => {
 // POST_DATA
 
 export const initializingForm = () => {
+    //this sets the requestSuccess state to null, to avoid the success message when the page load
     return {
-        type: actionTypes.INITIALIZING_FORM //thi sets the requestSuccess state to null
+        type: actionTypes.INITIALIZING_FORM 
     }
 }
 

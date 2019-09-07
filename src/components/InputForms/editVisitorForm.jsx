@@ -7,11 +7,6 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel'
 import CircularProgress from '@material-ui/core/CircularProgress';
 // core redux
 import * as actions from '../../store/actions/actions';
@@ -59,14 +54,16 @@ const useStyles = makeStyles(theme => ({
 
 
 function EditVisitorForm(props) {
+  console.log(props);
   const style = useStyles();
-  const [state, setState] = useState({ username: "", first_name: "",
+  const [state, setState] = useState({ phone: "", first_name: "",
                                        last_name: "", email: "",
-                                       password: "", type: "Guard",
-                                       dni: ""},);
+                                       password: "", dni: ""},);
   
   useEffect(() => {
     props.initializingForm();
+    const url = "/core/companies/1/visitors/108/";
+    props.getData(url);
     }, []);
 
   const handleChange = (event) => {
@@ -103,14 +100,13 @@ function EditVisitorForm(props) {
         <div className={style.paper}>
           {props.loading ?  //if this.props.loading==true: shows loading icon
           <div>
-            <p >Creando usuario...</p>
+            <p >Guardando cambios...</p>
             <CircularProgress  className={style.progress}/>
           </div>
           :
           <div></div>}
             <form className={style.form}  onSubmit={handleSubmit} >
                 <Grid container spacing={2}>
-                <p style={{color:"gray"}}>Todos los campos son obligatorios</p>
                 <Grid item xs={12} sm={6}>
                     <TextField
                     autoComplete="fname"
@@ -206,12 +202,13 @@ function mapStateToProps(state) { // this pass the items of the state we choose 
     loading: state.loading,
     error: state.error,
     requestSuccess: state.requestSuccess,
+    data: state.data,
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    postData: (data, url) => dispatch(actions.postData(data, url)),
+    getData: (url) => dispatch(actions.getData(url)),
     initializingForm: () => dispatch(actions.initializingForm()),
   }
 }

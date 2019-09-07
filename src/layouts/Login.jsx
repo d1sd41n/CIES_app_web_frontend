@@ -115,7 +115,7 @@ function SignIn(props) {
         </Typography>
         {props.loading ?  //if this.props.loading==true: shows loading icon
         <div>
-          <p>Autentificando...</p>
+          <p style={{color:"blue"}}>Autentificando...</p>
           <CircularProgress className={classes.progress} />
         </div>
         :
