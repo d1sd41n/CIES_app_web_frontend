@@ -54,11 +54,12 @@ const useStyles = makeStyles(theme => ({
 
 
 function EditVisitorForm(props) {
-  console.log(props);
   const style = useStyles();
-  const [state, setState] = useState({ phone: "", first_name: "",
+  const [state, setState] = useState({ phone: "", first_name: "nalga",
                                        last_name: "", email: "",
                                        password: "", dni: ""},);
+  // console.log(state);
+  // console.log(props.data.first_name);
   
   useEffect(() => {
     props.initializingForm();
@@ -116,6 +117,7 @@ function EditVisitorForm(props) {
                     fullWidth
                     id="first_name"
                     label="Nombre"
+                    value={state.first_name}
                     autoFocus
                     onChange={handleChange}
                     />

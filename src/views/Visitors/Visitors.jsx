@@ -57,6 +57,7 @@ const useStyles = makeStyles(theme => ({
 
 
 function TableList(props) {
+  console.log("TableList", props)
   const { classes } = props;
   const style = useStyles();
 
@@ -86,6 +87,7 @@ function TableList(props) {
               { title: 'id', field: 'id'},
             ]}
             url={'/core/companies/'+localStorage.getItem('company_id')+'/visitors/'}
+            history={props.history}
             />
           </CardBody>
         </Card>

@@ -49,7 +49,7 @@ const dashboardRoutes = [
   },
   {
     sidebar: true,
-    path: "/editarvisitante",
+    path: "/editarvisitante/:id",
     name: "Editar Visitante",
     icon: Wc,
     component: EditVisitor,

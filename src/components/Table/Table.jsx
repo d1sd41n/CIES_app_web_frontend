@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 
 
 function Table({ ...props }) {
-  console.log(props)
+  console.log("Table", props)
   const classes = useStyles();
 
 
@@ -76,7 +76,8 @@ function Table({ ...props }) {
           tooltip: 'Editar elemento',
           onClick: (event, rowData) => {
             // Do save operation
-            console.log(rowData);
+            console.log("reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+            props.history.push('/admin/editarvisitante/1');
           }
         },
         
