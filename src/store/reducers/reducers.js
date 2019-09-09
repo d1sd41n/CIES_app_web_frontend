@@ -71,6 +71,7 @@ const getDataSuccess = (state, action) => {
 const initializingForm = (state, action) => {
     return updateObject(state, {
         requestSuccess : null,
+        data: [],
     });
 }
 

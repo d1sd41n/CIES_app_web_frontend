@@ -149,6 +149,7 @@ export const getData = (url) => {
 
 export const initializingForm = () => {
     //this sets the requestSuccess state to null, to avoid the success message when the page load
+    //this sets data to [] to prevent to some forms charge invalid data from cache
     return {
         type: actionTypes.INITIALIZING_FORM 
     }

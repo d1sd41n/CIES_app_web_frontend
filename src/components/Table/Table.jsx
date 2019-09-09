@@ -25,6 +25,11 @@ const useStyles = makeStyles(theme => ({
 
 
 function Table({ ...props }) {
+  /* props: 
+    1- redux methods and states declared below in mapStateToProps and mapDispatchToProps
+    2- tableHead: fields and types of the data that will be listed in the table
+    3- url: url of the backend get endpoint where get the data */
+
   console.log("Table", props)
   const classes = useStyles();
 
@@ -75,9 +80,7 @@ function Table({ ...props }) {
           icon: 'edit',
           tooltip: 'Editar elemento',
           onClick: (event, rowData) => {
-            // Do save operation
-            console.log("reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-            props.history.push('/admin/editarvisitante/1');
+            props.Edit(rowData.id);
           }
         },
         

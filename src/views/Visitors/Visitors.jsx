@@ -45,25 +45,19 @@ const styles = {
   }
 };
 
-const useStyles = makeStyles(theme => ({
-  button: {
-    backgroundColor: "purple",
-    margin: theme.spacing(1),
-  },
-  leftIcon: {
-    marginLeft: theme.spacing(1),
-  }
-}));
-
 
 function TableList(props) {
   console.log("TableList", props)
   const { classes } = props;
-  const style = useStyles();
 
   useEffect(() => {
     props.onTryAutoSignup();
   });
+
+  const Edit = (id) => {
+    // send us to the form to edit the visistor with its id
+    props.history.push('/admin/editarvisitante/'+id);
+  }
 
   return (
     <GridContainer>
@@ -88,6 +82,7 @@ function TableList(props) {
             ]}
             url={'/core/companies/'+localStorage.getItem('company_id')+'/visitors/'}
             history={props.history}
+            Edit = {Edit}
             />
           </CardBody>
         </Card>

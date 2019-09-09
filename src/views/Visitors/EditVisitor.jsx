@@ -58,7 +58,9 @@ const useStyles = makeStyles(theme => ({
 
 
 
-function TableList(props) {
+function TableList(props, { match, location }) {
+  console.log(props);
+  console.log(props.match)
   const { classes } = props;
   const style = useStyles();
   useEffect(() => {
@@ -80,7 +82,9 @@ function TableList(props) {
                   onClick={() => { props.history.push('/admin/visitantes'); }}>
               Volver
             </Button>
-            <EditVisitorForm/>
+            <EditVisitorForm
+            hola={"holcuuuuuuuuuuuuuuuua"}
+            />
           </CardBody>
         </Card>
       </GridItem>

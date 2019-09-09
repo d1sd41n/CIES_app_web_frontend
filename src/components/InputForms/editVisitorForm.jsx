@@ -54,18 +54,20 @@ const useStyles = makeStyles(theme => ({
 
 
 function EditVisitorForm(props) {
+  console.log(props.hola)
   const style = useStyles();
   const [state, setState] = useState({ phone: "", first_name: "nalga",
-                                       last_name: "", email: "",
+                                       last_name: props.hola, email: "",
                                        password: "", dni: ""},);
-  // console.log(state);
+  console.log(props.data);
   // console.log(props.data.first_name);
   
   useEffect(() => {
     props.initializingForm();
     const url = "/core/companies/1/visitors/108/";
     props.getData(url);
-    }, []);
+    setState({...state, "first_name": props.hola});
+    }, [setState]);
 
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value});
@@ -75,7 +77,10 @@ function EditVisitorForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.postData(state, props.url); // this call the dispatch of redux
+    // props.postData(state, props.url); // this call the dispatch of redux
+    setState({...state, ["phone"]: "455454"});
+    console.log(1111111111111111111111)
+
   }
 
   let errorMessage = null;
@@ -106,7 +111,7 @@ function EditVisitorForm(props) {
           </div>
           :
           <div></div>}
-            <form className={style.form}  onSubmit={handleSubmit} >
+            <form className={style.form}  onSubmit={handleSubmit} noValidate >
                 <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                     <TextField
@@ -132,6 +137,7 @@ function EditVisitorForm(props) {
                     name="last_name"
                     autoComplete="lname"
                     onChange={handleChange}
+                    value={state.last_name}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -173,6 +179,7 @@ function EditVisitorForm(props) {
                     autoComplete="phone"
                     InputProps={{ inputProps: { min: 0,} }}
                     onChange={handleChange}
+                    value={state.phone}
                     />
                 </Grid>
                 {errorMessage } 
