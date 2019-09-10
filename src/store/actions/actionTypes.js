@@ -12,8 +12,10 @@ export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS';
 //post data
 export const POST_DATA_START = 'POST_DATA_START';
 export const POST_DATA_SUCCESS = 'POST_DATA_SUCCESS';
-//post data
+//delete data
 export const DELETE_DATA_START = 'DELETE_DATA_START';
 export const DELETE_DATA_SUCCESS = 'DELETE_DATA_SUCCESS';
+//edit data
+export const INITIALIZING_EDIT= 'INITIALIZING_EDIT';
 // fail request
 export const REQUEST_FAIL = 'REQUEST_FAIL';

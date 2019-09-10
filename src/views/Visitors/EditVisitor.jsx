@@ -58,14 +58,16 @@ const useStyles = makeStyles(theme => ({
 
 
 
-function TableList(props, { match, location }) {
-  console.log(props);
-  console.log(props.match)
+function EditVisitor(props) {
+  // console.log(props.data);
+  // console.log(props.match)
   const { classes } = props;
   const style = useStyles();
+
   useEffect(() => {
     props.onTryAutoSignup();
-  });
+    }, []);
+
   return (
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
@@ -83,7 +85,7 @@ function TableList(props, { match, location }) {
               Volver
             </Button>
             <EditVisitorForm
-            hola={"holcuuuuuuuuuuuuuuuua"}
+            data={props.data}
             />
           </CardBody>
         </Card>
@@ -92,7 +94,7 @@ function TableList(props, { match, location }) {
   );
 }
 
-TableList.propTypes = {
+EditVisitor.propTypes = {
   classes: PropTypes.object
 };
 
@@ -101,13 +103,15 @@ TableList.propTypes = {
 const mapStateToProps = (state) => {
   return {
       nothing: null,
+      data: state.data,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     onTryAutoSignup: () => dispatch(actions.authCheckState()),
+    getData: (url) => dispatch(actions.getData(url)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(TableList));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(EditVisitor));

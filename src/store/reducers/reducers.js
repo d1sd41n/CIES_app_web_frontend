@@ -15,6 +15,8 @@ const initialState = {
     item_id: null,
     //auth variables
     authLoading: false,
+    // edit variables
+    start_edit: false, // this is set to true when you're going to edit data
 }
 
 // Auth ###########################################
@@ -108,6 +110,17 @@ const deleteDataSuccess = (state, action) => {
 }
 
 
+// editData ###########################################
+
+const initializingEdit = (state, action) => {
+    return updateObject(state, {
+        data: action.data,
+        start_edit: true,
+        requestSuccess : null,
+    });
+}
+
+
 // request fail
 const requestFail = (state, action) => {
     return updateObject(state, {
@@ -133,6 +146,8 @@ const reducer = (state=initialState, action) => {
         //delete data reducers
         case actionTypes.DELETE_DATA_START: return deleteDataStart(state, action);
         case actionTypes.DELETE_DATA_SUCCESS: return deleteDataSuccess(state, action);
+        //edit data reducers
+        case actionTypes.INITIALIZING_EDIT: return initializingEdit(state, action);
 
 
 

@@ -46,16 +46,16 @@ const styles = {
 };
 
 
-function TableList(props) {
-  console.log("TableList", props)
+function Visitors(props) {
   const { classes } = props;
 
   useEffect(() => {
     props.onTryAutoSignup();
   });
 
-  const Edit = (id) => {
+  const Edit = (id, data) => {
     // send us to the form to edit the visistor with its id
+    props.initializingEdit(data);
     props.history.push('/admin/editarvisitante/'+id);
   }
 
@@ -91,7 +91,7 @@ function TableList(props) {
   );
 }
 
-TableList.propTypes = {
+Visitors.propTypes = {
   classes: PropTypes.object
 };
 
@@ -104,7 +104,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     onTryAutoSignup: () => dispatch(actions.authCheckState()),
+    initializingEdit: (data) => dispatch(actions.initializingEdit(data)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(TableList));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Visitors));

@@ -30,7 +30,6 @@ function Table({ ...props }) {
     2- tableHead: fields and types of the data that will be listed in the table
     3- url: url of the backend get endpoint where get the data */
 
-  console.log("Table", props)
   const classes = useStyles();
 
 
@@ -80,12 +79,13 @@ function Table({ ...props }) {
           icon: 'edit',
           tooltip: 'Editar elemento',
           onClick: (event, rowData) => {
-            props.Edit(rowData.id);
+            props.Edit(rowData.id, rowData);
           }
         },
         
       
       ]}
+      
       // this part is the traduction of the fields en in the table
       localization={{
         body: {

@@ -48,7 +48,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    sidebar: true,
+    sidebar: false,
     path: "/editarvisitante/:id",
     name: "Editar Visitante",
     icon: Wc,

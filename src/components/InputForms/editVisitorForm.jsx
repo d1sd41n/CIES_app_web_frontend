@@ -54,20 +54,15 @@ const useStyles = makeStyles(theme => ({
 
 
 function EditVisitorForm(props) {
-  console.log(props.hola)
+  console.log(props)
   const style = useStyles();
-  const [state, setState] = useState({ phone: "", first_name: "nalga",
-                                       last_name: props.hola, email: "",
-                                       password: "", dni: ""},);
-  console.log(props.data);
-  // console.log(props.data.first_name);
+  const [state, setState] = useState({ phone: props.data.phone, first_name: props.data.first_name,
+                                       last_name: props.data.last_name, email: props.data.email,
+                                       dni: props.data.dni},);
+
   
-  useEffect(() => {
-    props.initializingForm();
-    const url = "/core/companies/1/visitors/108/";
-    props.getData(url);
-    setState({...state, "first_name": props.hola});
-    }, [setState]);
+  // useEffect(() => {
+  //   }, []);
 
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value});
@@ -78,8 +73,7 @@ function EditVisitorForm(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     // props.postData(state, props.url); // this call the dispatch of redux
-    setState({...state, ["phone"]: "455454"});
-    console.log(1111111111111111111111)
+    console.log(state);
 
   }
 
@@ -152,6 +146,7 @@ function EditVisitorForm(props) {
                     autoComplete="dni"
                     InputProps={{ inputProps: { min: 0,} }}
                     onChange={handleChange}
+                    value={state.dni}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -165,6 +160,7 @@ function EditVisitorForm(props) {
                     name="email"
                     autoComplete="email"
                     onChange={handleChange}
+                    value={state.email}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -217,7 +213,6 @@ function mapStateToProps(state) { // this pass the items of the state we choose 
 
 const mapDispatchToProps = dispatch => {
   return {
-    getData: (url) => dispatch(actions.getData(url)),
     initializingForm: () => dispatch(actions.initializingForm()),
   }
 }

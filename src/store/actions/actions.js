@@ -220,3 +220,13 @@ export const deleteData = (url) => {
             })
     }
 }
+
+
+// EDIT_DATA
+
+export const initializingEdit = data => {
+    return {
+        type: actionTypes.INITIALIZING_EDIT,
+        data: data,
+    }
+}
