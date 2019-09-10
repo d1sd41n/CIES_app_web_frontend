@@ -120,6 +120,22 @@ const initializingEdit = (state, action) => {
     });
 }
 
+const editDataStart = (state, action) => {
+    return updateObject(state, {
+        error: null,
+        loading: true,
+        requestSuccess : null
+    });
+}
+
+const editDataSuccess = (state, action) => {
+    return updateObject(state, {
+        error: null,
+        loading: false,
+        requestSuccess : true
+    });
+}
+
 
 // request fail
 const requestFail = (state, action) => {
@@ -148,6 +164,8 @@ const reducer = (state=initialState, action) => {
         case actionTypes.DELETE_DATA_SUCCESS: return deleteDataSuccess(state, action);
         //edit data reducers
         case actionTypes.INITIALIZING_EDIT: return initializingEdit(state, action);
+        case actionTypes.EDIT_DATA_START: return editDataStart(state, action);
+        case actionTypes.EDIT_DATA_SUCCESS: return editDataSuccess(state, action);
 
 
 

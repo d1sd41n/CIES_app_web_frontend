@@ -85,7 +85,6 @@ function UserForm(props) {
         
       if("Request failed with status code 400" === props.error.message){
         errorMessage = getErrorMessages(props.error.response.data); // this organize the message errors
-        console.log(errorMessage);
       }else{
         errorMessage = ( // if the error is not invalid auth credentials, shows whatever error is
           <div>

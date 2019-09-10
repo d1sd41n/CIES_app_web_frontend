@@ -52,10 +52,14 @@ export const checkAuthTimeout = expirationTime => {
 export const authLogin = (username, password) => {
     return dispatch => {
         dispatch(authStart());
+        const headers = {
+            'Content-Type': 'application/json',
+            'Accept-Language': 'es-ES,es;q=0.8',
+          };
         axios.post(backendUrl + '/core/login_token/', { //send the login to the server
             username: username,
             password: password
-        })
+        }, {headers})
         .then(res => {
             const token = res.data.token;
             const name = res.data.name;
@@ -228,5 +232,37 @@ export const initializingEdit = data => {
     return {
         type: actionTypes.INITIALIZING_EDIT,
         data: data,
+    }
+}
+
+export const editDataStart = () => {
+    return {
+        type: actionTypes.EDIT_DATA_START
+    }
+}
+
+export const editDataSuccess = () => {
+    return {
+        type: actionTypes.EDIT_DATA_SUCCESS,
+    }
+}
+
+export const editData = (data, url)  => {
+    return dispatch => {
+        dispatch(editDataStart());
+        const token = localStorage.getItem('token');
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Token ' + token,
+            'Accept-Language': 'es-ES,es;q=0.8',
+          };
+        axios.patch(backendUrl + url, data, {headers})
+            .then(res => {
+                dispatch(editDataSuccess());
+            })
+            .catch(err => {
+                dispatch(requestFail(err))
+                console.log(err.response.data)
+            })
     }
 }

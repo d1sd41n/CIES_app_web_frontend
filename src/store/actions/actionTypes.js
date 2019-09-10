@@ -17,5 +17,7 @@ export const DELETE_DATA_START = 'DELETE_DATA_START';
 export const DELETE_DATA_SUCCESS = 'DELETE_DATA_SUCCESS';
 //edit data
 export const INITIALIZING_EDIT= 'INITIALIZING_EDIT';
+export const EDIT_DATA_START = 'EDIT_DATA_START';
+export const EDIT_DATA_SUCCESS = 'EDIT_DATA_SUCCESS';
 // fail request
 export const REQUEST_FAIL = 'REQUEST_FAIL';

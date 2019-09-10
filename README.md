@@ -7,6 +7,11 @@ hay que hacer que los campos invalidos sean diferentes a 400.
 3- En visitantes no se muestra de momento ni fecha de registro, persona quien lo registro y sede donde se registro.
 
 4- el endpoint de visitantes y de items debe ser global y no pertenecer a una sola empresa o sede, es la unica manera sabida por el momento de consultar la data de usuarios e items desde cualquier compañia.
+
+5- en el backend hay un borrado en cascada, al eliminar un usuario se eliminará los visistantes que haya registrado, items(confirmado), posiblemente tambien otros datos como compañias creadas, sedes etc..
+
+
+
 --------------------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

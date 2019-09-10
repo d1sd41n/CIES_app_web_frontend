@@ -59,8 +59,6 @@ const useStyles = makeStyles(theme => ({
 
 
 function EditVisitor(props) {
-  // console.log(props.data);
-  // console.log(props.match)
   const { classes } = props;
   const style = useStyles();
 

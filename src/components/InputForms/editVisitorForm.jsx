@@ -54,16 +54,12 @@ const useStyles = makeStyles(theme => ({
 
 
 function EditVisitorForm(props) {
-  console.log(props)
   const style = useStyles();
   const [state, setState] = useState({ phone: props.data.phone, first_name: props.data.first_name,
                                        last_name: props.data.last_name, email: props.data.email,
-                                       dni: props.data.dni},);
+                                       dni: props.data.dni, id: props.data.id},);
 
   
-  // useEffect(() => {
-  //   }, []);
-
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value});
   }
@@ -72,8 +68,9 @@ function EditVisitorForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // props.postData(state, props.url); // this call the dispatch of redux
-    console.log(state);
+    const url = "/core/companies/"+localStorage.getItem('company_id')+"/visitors/"+state.id+"/";
+    props.editData(state, url); // this call the dispatch of redux
+
 
   }
 
@@ -82,7 +79,6 @@ function EditVisitorForm(props) {
         
       if("Request failed with status code 400" === props.error.message){
         errorMessage = getErrorMessages(props.error.response.data); // this organize the message errors
-        console.log(errorMessage);
       }else{
         errorMessage = ( // if the error is not invalid auth credentials, shows whatever error is
           <div>
@@ -187,13 +183,13 @@ function EditVisitorForm(props) {
                 color="primary"
                 className={style.submit}
                 >
-                Crear Usuario
+                Guardar cambios
                 </Button>
             </form>
 
             {props.requestSuccess ?  //if the user creation is successful 
               <div>
-                <p style={{color:"green", fontSize:20}}>El Usuario ha sido creado con exito!</p>
+                <p style={{color:"green", fontSize:20}}>Se han guardado los cambios con exito!</p>
               </div>
               :
               <div></div>}
@@ -214,6 +210,7 @@ function mapStateToProps(state) { // this pass the items of the state we choose 
 const mapDispatchToProps = dispatch => {
   return {
     initializingForm: () => dispatch(actions.initializingForm()),
+    editData: (data, url) => dispatch(actions.editData(data, url)),
   }
 }
 
