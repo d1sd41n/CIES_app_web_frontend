@@ -12,7 +12,7 @@ import GridContainer from "../../components/Grid/GridContainer.jsx";
 import Card from "../../components/Card/Card.jsx";
 import CardHeader from "../../components/Card/CardHeader.jsx";
 import CardBody from "../../components/Card/CardBody.jsx";
-import EditVisitorForm from "../../components/InputForms/editVisitorForm";
+import EditItemForm from "../../components/InputForms/editItemForm";
 // Redux store
 import * as actions from '../../store/actions/actions';
 
@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-function EditVisitor(props) {
+function EditItem(props) {
   const { classes } = props;
   const style = useStyles();
 
@@ -71,18 +71,18 @@ function EditVisitor(props) {
       <GridItem xs={12} sm={12} md={12}>
         <Card>
           <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Editar visistante</h4>
+            <h4 className={classes.cardTitleWhite}>Editar Objeto</h4>
             <p className={classes.cardCategoryWhite}>
-              Modifica los campos que deseas editar
+              Cambia el estado del objeto de Perdido a encontrado o vicevera
             </p>
           </CardHeader>
           <CardBody>
             {/* button to go back to users list */}
             <Button variant="contained" color="primary" className={style.button} 
-                  onClick={() => { props.history.push('/admin/visitantes'); }}>
+                  onClick={() => { props.history.push('/admin/Objetos'); }}>
               Volver
             </Button>
-            <EditVisitorForm
+            <EditItemForm
             data={props.data}
             />
           </CardBody>
@@ -92,7 +92,7 @@ function EditVisitor(props) {
   );
 }
 
-EditVisitor.propTypes = {
+EditItem.propTypes = {
   classes: PropTypes.object
 };
 
@@ -111,4 +111,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(EditVisitor));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(EditItem));

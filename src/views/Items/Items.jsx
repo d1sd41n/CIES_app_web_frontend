@@ -55,7 +55,7 @@ function Items(props) {
   const Edit = (id, data) => {
     // send us to the form to edit the visistor with its id
     props.initializingEdit(data);
-    props.history.push('/admin/editarvisitante/'+id);
+    props.history.push('/admin/EditarObjeto/'+id);
   }
 
   return (

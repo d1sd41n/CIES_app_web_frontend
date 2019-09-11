@@ -11,6 +11,7 @@ import CreateUser from "./views/Users/CreateUser.jsx";
 import Visitors from "./views/Visitors/Visitors.jsx";
 import EditVisitor from "./views/Visitors/EditVisitor.jsx";
 import Items from "./views/Items/Items.jsx";
+import EditItem from "./views/Items/EditItem";
 
 const dashboardRoutes = [
   // {
@@ -59,6 +60,14 @@ const dashboardRoutes = [
     name: "Objetos",
     icon: DevicesOther,
     component: Items,
+    layout: "/admin"
+  },
+  {
+    sidebar: true,
+    path: "/EditarObjeto/:id",
+    name: "Editar Objeto",
+    icon: DevicesOther,
+    component: EditItem,
     layout: "/admin"
   },
 ];

@@ -32,8 +32,12 @@ const useStyles = makeStyles(theme => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
-  submit: {
-    backgroundColor: "#A23DB7",
+  lost: {
+    backgroundColor: "green",
+    margin: theme.spacing(3, 0, 2),
+  },
+  notlost: {
+    backgroundColor: "red",
     margin: theme.spacing(3, 0, 2),
   },
   textField: {
@@ -54,11 +58,13 @@ const useStyles = makeStyles(theme => ({
 
 
 function EditVisitorForm(props) {
+  console.log(props)
   const style = useStyles();
-  const [state, setState] = useState({ phone: props.data.phone, first_name: props.data.first_name,
-                                       last_name: props.data.last_name, email: props.data.email,
-                                       dni: props.data.dni, id: props.data.id},);
-
+  const [state, setState] = useState({ owner_name: props.data.owner_name,
+                                      owner_last_name: props.data.owner_last_name, 
+                                      type_item: props.data.type_item, brand: props.data.brand,
+                                      lost: props.data.lost, id: props.data.id},);
+  console.log(state.lost)
   
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value});
@@ -105,88 +111,92 @@ function EditVisitorForm(props) {
                 <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                     <TextField
+                    disabled
                     autoComplete="fname"
-                    name="first_name"
+                    name="owner_name"
                     variant="outlined"
                     required
                     fullWidth
-                    id="first_name"
-                    label="Nombre"
-                    value={state.first_name}
+                    id="owner_name"
+                    label="Nombre del dueño"
+                    value={state.owner_name}
                     autoFocus
                     onChange={handleChange}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
+                    disabled
                     variant="outlined"
                     required
                     fullWidth
-                    id="last_name"
-                    label="Apellido"
+                    id="owner_last_name"
+                    label="Apellido del dueño"
                     name="last_name"
                     autoComplete="lname"
                     onChange={handleChange}
-                    value={state.last_name}
+                    value={state.owner_last_name}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
+                    disabled
                     variant="outlined"
-                    type="number"
                     required
                     fullWidth
-                    id="dni"
-                    label="Cedula"
-                    name="dni"
-                    autoComplete="dni"
-                    InputProps={{ inputProps: { min: 0,} }}
+                    id="type_item"
+                    label="Tipo de objeto"
+                    name="type_item"
+                    autoComplete="tipo de objeto"
                     onChange={handleChange}
-                    value={state.dni}
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                    variant="outlined"
-                    type="email"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Correo electronico"
-                    name="email"
-                    autoComplete="email"
-                    onChange={handleChange}
-                    value={state.email}
+                    value={state.type_item}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
+                    disabled
                     variant="outlined"
-                    type="number"
                     required
                     fullWidth
-                    id="dni"
-                    label="Telefono"
-                    name="phone"
-                    autoComplete="phone"
-                    InputProps={{ inputProps: { min: 0,} }}
+                    id="brand"
+                    label="Marca del objeto"
+                    name="brand"
+                    autoComplete="lname"
                     onChange={handleChange}
-                    value={state.phone}
+                    value={state.brand}
                     />
                 </Grid>
-                <p style={{color:"gray"}}>Todos los campos son obligatorios</p>
+                <Grid item xs={12} sm={60}>
+                {state.lost ?  //if this.props.lost==true: 
+                <div>
+                  <p style={{color:"blue"}}>Estado actual del Objeto: <b style={{color:"red"}}>Perdido!</b></p>
+                  <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={style.lost}
+                  >
+                  Cambiar estado a Encontrado
+                  </Button>
+                </div>
+                : // else
+                  <div>
+                    <p style={{color:"blue"}}>Estado actual del Objeto: <b style={{color:"green"}}>Encontrado!</b></p>
+                    <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={style.notlost}
+                    >
+                    Cambiar estado a Perdido
+                    </Button>
+                  </div>
+                }
+                </Grid>
                 {errorMessage } 
                 </Grid>
-                
-                <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={style.submit}
-                >
-                Guardar cambios
-                </Button>
             </form>
 
             {props.requestSuccess ?  //if the user creation is successful 
