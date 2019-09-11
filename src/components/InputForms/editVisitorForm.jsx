@@ -101,7 +101,7 @@ function EditVisitorForm(props) {
           </div>
           :
           <div></div>}
-            <form className={style.form}  onSubmit={handleSubmit} noValidate >
+            <form className={style.form}  onSubmit={handleSubmit} >
                 <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                     <TextField

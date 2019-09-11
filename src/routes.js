@@ -2,7 +2,7 @@
 import Dashboard from "@material-ui/icons/Dashboard";
 import People from "@material-ui/icons/People";
 import Person from "@material-ui/icons/Person";
-import LibraryBooks from "@material-ui/icons/LibraryBooks";
+import DevicesOther from "@material-ui/icons/DevicesOther";
 import Wc from "@material-ui/icons/Wc";
 // core components/views for Admin layout
 // import DashboardPage from "views/Dashboard/Dashboard.jsx";
@@ -10,9 +10,7 @@ import Users from "./views/Users/Users.jsx";
 import CreateUser from "./views/Users/CreateUser.jsx";
 import Visitors from "./views/Visitors/Visitors.jsx";
 import EditVisitor from "./views/Visitors/EditVisitor.jsx";
-// import UserProfile from "views/UserProfile/UserProfile.jsx";
-// import TableList from "views/TableList/TableList.jsx";
-// import Typography from "views/Typography/Typography.jsx";
+import Items from "./views/Items/Items.jsx";
 
 const dashboardRoutes = [
   // {
@@ -55,30 +53,14 @@ const dashboardRoutes = [
     component: EditVisitor,
     layout: "/admin"
   },
-  // {
-  //   sidebar: true,
-  //   path: "/profile",
-  //   name: "User Profile",
-  //   icon: Person,
-  //   component: UserProfile,
-  //   layout: "/admin"
-  // },
-  // {
-  //   sidebar: true,
-  //   path: "/table",
-  //   name: "Table List",
-  //   icon: "content_paste",
-  //   component: TableList,
-  //   layout: "/admin"
-  // },
-  // {
-  //   sidebar: true,
-  //   path: "/typography",
-  //   name: "Typography",
-  //   icon: LibraryBooks,
-  //   component: Typography,
-  //   layout: "/admin"
-  // },
+  {
+    sidebar: true,
+    path: "/Objetos",
+    name: "Objetos",
+    icon: DevicesOther,
+    component: Items,
+    layout: "/admin"
+  },
 ];
 
 export default dashboardRoutes;
