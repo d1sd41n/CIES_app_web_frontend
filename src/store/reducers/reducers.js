@@ -11,12 +11,16 @@ const initialState = {
     error: null, 
     loading: false,
     data: [],
-    requestSuccess : null,
+    requestSuccess : false,
     item_id: null,
     //auth variables
     authLoading: false,
     // edit variables
     start_edit: false, // this is set to true when you're going to edit data
+    // email request variables
+    EmailrequestSuccess : false,
+    EmailrequestError: null, 
+    EmailrequestLoading: false,
 }
 
 // Auth ###########################################
@@ -145,6 +149,32 @@ const requestFail = (state, action) => {
     });
 }
 
+// Email request ############################################
+
+const EmailRequestStart = (state, action) => {
+    return updateObject(state, {
+        EmailrequestError: null,
+        EmailrequestLoading: true,
+        EmailrequestSuccess : false
+    });
+}
+
+const EmailRequestSuccess = (state, action) => {
+    return updateObject(state, {
+        EmailrequestError: null,
+        EmailrequestLoading: false,
+        requestSuccess : true,
+    });
+}
+
+const EmailrequestFail = (state, action) => {
+    return updateObject(state, {
+        EmailrequestError: action.error,
+        EmailrequestSuccess: false,
+    });
+}
+
+
 const reducer = (state=initialState, action) => {
     switch (action.type) {
         // Auth reducers
@@ -166,7 +196,10 @@ const reducer = (state=initialState, action) => {
         case actionTypes.INITIALIZING_EDIT: return initializingEdit(state, action);
         case actionTypes.EDIT_DATA_START: return editDataStart(state, action);
         case actionTypes.EDIT_DATA_SUCCESS: return editDataSuccess(state, action);
-
+        //email request reducers
+        case actionTypes.EMAIL_REQUEST_START: return EmailRequestStart(state, action);
+        case actionTypes.EMAIL_REQUEST_SUCCESS: return EmailRequestSuccess(state, action);
+        case actionTypes.EMAIL_REQUEST_FAIL: return EmailrequestFail(state, action);
 
 
         // request fail

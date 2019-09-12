@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
 
 
 function EditVisitorForm(props) {
-  // console.log(props)
+  console.log(props)
   const style = useStyles();
   const [state, setState] = useState({ lost: props.data.lost, id: props.data.id},);
 
@@ -66,11 +66,8 @@ function EditVisitorForm(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = state;
-    console.log(data)
     data.lost = !data.lost;
-    console.log(data)
-    // const url = "/items/companies/"+localStorage.getItem('company_id')+"/items/"+state.id+"/";
-    const url = "/items/companies/1/items/23/";
+    const url = "/items/companies/"+localStorage.getItem('company_id')+"/items/"+state.id+"/";
     props.editData(data, url); // this call the dispatch of redux
     // setState({...state, ['lost']: !state.lost});
 
@@ -87,6 +84,7 @@ function EditVisitorForm(props) {
         errorMessage = ( // if the error is not invalid auth credentials, shows whatever error is
           <div>
             <br /><hr className={style.hr} />
+            <p style={{color:"red"}}>{"Advertencia: " + "No se han podido guardar los cambios en el servidor"}</p>
             <p style={{color:"red"}}>{"ERROR: " + props.error.message}</p>
             <hr className={style.hr} /><br />
           </div>
@@ -102,6 +100,13 @@ function EditVisitorForm(props) {
           <div>
             <p >Guardando cambios...</p>
             <CircularProgress  className={style.progress}/>
+          </div>
+          :
+          <div></div>}
+          {props.EmailrequestLoading ?  //if this.props.loading==true: shows loading icon
+          <div>
+            <p >Enviando Email...</p>
+            <CircularProgress  className={style.progress} color="secondary"/>
           </div>
           :
           <div></div>}
@@ -199,6 +204,12 @@ function EditVisitorForm(props) {
               </div>
               :
               <div></div>}
+            {props.EmailrequestSuccess ?  //if the user creation is successful 
+              <div>
+                <p style={{color:"blue", fontSize:20}}>Se ha enviado el email con exito!</p>
+              </div>
+              :
+              <div></div>}
         </div>
     </Container>
   );
@@ -206,10 +217,15 @@ function EditVisitorForm(props) {
 
 function mapStateToProps(state) { // this pass the items of the state we choose to the props of the components in connect function
   return {
+    // edit request redux data
     loading: state.loading,
     error: state.error,
     requestSuccess: state.requestSuccess,
     data: state.data,
+    // email request redux data
+    EmailrequestError: state.EmailrequestError,
+    EmailrequestLoading: state.EmailrequestLoading,
+    EmailrequestSuccess : state.EmailrequestSuccess,
   };
 }
 
@@ -217,6 +233,7 @@ const mapDispatchToProps = dispatch => {
   return {
     initializingForm: () => dispatch(actions.initializingForm()),
     editData: (data, url) => dispatch(actions.editData(data, url)),
+    EmailRequest: (data, url) => dispatch(actions.EmailRequest(data, url)),
   }
 }
 

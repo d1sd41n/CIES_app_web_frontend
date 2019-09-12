@@ -186,7 +186,6 @@ export const postData = (data, url)  => {
             })
             .catch(err => {
                 dispatch(requestFail(err))
-                console.log(err.response.data)
             })
     }
 }
@@ -262,6 +261,48 @@ export const editData = (data, url)  => {
             })
             .catch(err => {
                 dispatch(requestFail(err))
+            })
+    }
+}
+
+// Email request
+
+
+export const EmailRequestStart = () => {
+    return {
+        type: actionTypes.EMAIL_REQUEST_START
+    }
+}
+
+export const EmailRequestSuccess = () => {
+    return {
+        type: actionTypes.EMAIL_REQUEST_SUCCESS,
+    }
+}
+
+export const EmailrequestFail = error => {
+    return {
+        type: actionTypes.EMAIL_REQUEST_FAIL,
+        error: error
+    }
+}
+
+
+export const EmailRequest = (data, url)  => {
+    return dispatch => {
+        dispatch(EmailRequestStart());
+        const token = localStorage.getItem('token');
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Token ' + token,
+            'Accept-Language': 'es-ES,es;q=0.8',
+          };
+        axios.post(backendUrl + url, data, {headers})
+            .then(res => {
+                dispatch(EmailRequestSuccess());
+            })
+            .catch(err => {
+                dispatch(EmailrequestFail(err))
                 console.log(err.response.data)
             })
     }

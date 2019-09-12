@@ -21,3 +21,7 @@ export const EDIT_DATA_START = 'EDIT_DATA_START';
 export const EDIT_DATA_SUCCESS = 'EDIT_DATA_SUCCESS';
 // fail request
 export const REQUEST_FAIL = 'REQUEST_FAIL';
+// //Email Action request types######
+export const EMAIL_REQUEST_START = 'EMAIL_REQUEST_START';
+export const EMAIL_REQUEST_SUCCESS = 'EMAIL_REQUEST_SUCCESS';
+export const EMAIL_REQUEST_FAIL = 'EMAIL_REQUEST_FAIL';
