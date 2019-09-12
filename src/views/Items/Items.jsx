@@ -78,9 +78,9 @@ function Items(props) {
               { title: 'Marca', field: 'brand', },
               { title: 'Tipo', field: 'type_item'},
               { title: 'Estado: Perdido(✔) Encontrado(-)', field: 'lost', type: 'boolean'},
+              { title: 'Referencia/serial', field: 'reference'},
               { title: 'id', field: 'id', hidden: true},
             ]}
-            // url={'/core/companies/'+localStorage.getItem('company_id')+'/items/'}
             url={'/items/companies/'+localStorage.getItem('company_id')+'/items/'}
             history={props.history}
             Edit = {Edit}

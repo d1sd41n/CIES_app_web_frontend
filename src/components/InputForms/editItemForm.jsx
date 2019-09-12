@@ -58,30 +58,28 @@ const useStyles = makeStyles(theme => ({
 
 
 function EditVisitorForm(props) {
-  console.log(props)
+  // console.log(props)
   const style = useStyles();
-  const [state, setState] = useState({ owner_name: props.data.owner_name,
-                                      owner_last_name: props.data.owner_last_name, 
-                                      type_item: props.data.type_item, brand: props.data.brand,
-                                      lost: props.data.lost, id: props.data.id},);
-  console.log(state.lost)
-  
-  const handleChange = (event) => {
-    setState({...state, [event.target.name]: event.target.value});
-  }
-
+  const [state, setState] = useState({ lost: props.data.lost, id: props.data.id},);
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const url = "/core/companies/"+localStorage.getItem('company_id')+"/visitors/"+state.id+"/";
-    props.editData(state, url); // this call the dispatch of redux
+    const data = state;
+    console.log(data)
+    data.lost = !data.lost;
+    console.log(data)
+    // const url = "/items/companies/"+localStorage.getItem('company_id')+"/items/"+state.id+"/";
+    const url = "/items/companies/1/items/23/";
+    props.editData(data, url); // this call the dispatch of redux
+    // setState({...state, ['lost']: !state.lost});
 
 
   }
 
   let errorMessage = null;
     if (props.error) { //this helps to show error message if the auth fail is dispatched
+      console.log(props.error.response)
         
       if("Request failed with status code 400" === props.error.message){
         errorMessage = getErrorMessages(props.error.response.data); // this organize the message errors
@@ -119,9 +117,8 @@ function EditVisitorForm(props) {
                     fullWidth
                     id="owner_name"
                     label="Nombre del dueño"
-                    value={state.owner_name}
+                    value={props.data.owner_name}
                     autoFocus
-                    onChange={handleChange}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -134,8 +131,7 @@ function EditVisitorForm(props) {
                     label="Apellido del dueño"
                     name="last_name"
                     autoComplete="lname"
-                    onChange={handleChange}
-                    value={state.owner_last_name}
+                    value={props.data.owner_last_name}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -148,8 +144,7 @@ function EditVisitorForm(props) {
                     label="Tipo de objeto"
                     name="type_item"
                     autoComplete="tipo de objeto"
-                    onChange={handleChange}
-                    value={state.type_item}
+                    value={props.data.type_item}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -162,8 +157,7 @@ function EditVisitorForm(props) {
                     label="Marca del objeto"
                     name="brand"
                     autoComplete="lname"
-                    onChange={handleChange}
-                    value={state.brand}
+                    value={props.data.brand}
                     />
                 </Grid>
                 <Grid item xs={12} sm={60}>
@@ -201,7 +195,7 @@ function EditVisitorForm(props) {
 
             {props.requestSuccess ?  //if the user creation is successful 
               <div>
-                <p style={{color:"green", fontSize:20}}>Se han guardado los cambios con exito!</p>
+                <p style={{color:"green", fontSize:20}}>Se ha cambiado el estado con exito!</p>
               </div>
               :
               <div></div>}
