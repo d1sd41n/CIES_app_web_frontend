@@ -69,14 +69,14 @@ function EditVisitorForm(props) {
     data.lost = !data.lost;
     const url = "/items/companies/"+localStorage.getItem('company_id')+"/items/"+state.id+"/";
     props.editData(data, url); // this call the dispatch of redux
-    // setState({...state, ['lost']: !state.lost});
-
-
-  }
+    if(state.lost === false){
+      const urlEmail = "/emailing/companies/"+localStorage.getItem('company_id')+"/seats/"+localStorage.getItem('seat_id')+"/email/";
+      props.EmailRequest(state, urlEmail);
+    }
+   }
 
   let errorMessage = null;
     if (props.error) { //this helps to show error message if the auth fail is dispatched
-      console.log(props.error.response)
         
       if("Request failed with status code 400" === props.error.message){
         errorMessage = getErrorMessages(props.error.response.data); // this organize the message errors
@@ -89,6 +89,18 @@ function EditVisitorForm(props) {
             <hr className={style.hr} /><br />
           </div>
         );}
+    }
+
+    let EmailerrorMessage = null;
+    if (props.EmailrequestError) { //this helps to show error message if the auth fail is dispatched
+      EmailerrorMessage = ( // if the error is not invalid auth credentials, shows whatever error is
+        <div>
+          <br /><hr className={style.hr} />
+          <p style={{color:"red"}}>{"Advertencia: " + "No se ha podido enviar el email"}</p>
+          <p style={{color:"red"}}>{"ERROR: " + props.EmailrequestError.message}</p>
+          <hr className={style.hr} /><br />
+        </div>
+      );
     }
 
   return (
@@ -165,6 +177,8 @@ function EditVisitorForm(props) {
                     value={props.data.brand}
                     />
                 </Grid>
+                
+                
                 <Grid item xs={12} sm={60}>
                 {state.lost ?  //if this.props.lost==true: 
                 <div>
@@ -178,6 +192,9 @@ function EditVisitorForm(props) {
                   >
                   Cambiar estado a Encontrado
                   </Button>
+                  <p style={{color:"gray"}}>Al cambiar el estado de perdido a encontrado se enviará 
+                                              un email automaticamente al usuario informandole de la aparición 
+                                              del objeto</p>
                 </div>
                 : // else
                   <div>
@@ -195,12 +212,13 @@ function EditVisitorForm(props) {
                 }
                 </Grid>
                 {errorMessage } 
+                {EmailerrorMessage}
                 </Grid>
             </form>
 
             {props.requestSuccess ?  //if the user creation is successful 
               <div>
-                <p style={{color:"green", fontSize:20}}>Se ha cambiado el estado con exito!</p>
+                <p style={{color:"green", fontSize:20}}>Se ha cambiado el estado con exito y se han guardado los cambios!</p>
               </div>
               :
               <div></div>}

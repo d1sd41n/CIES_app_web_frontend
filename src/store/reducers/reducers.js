@@ -120,6 +120,7 @@ const initializingEdit = (state, action) => {
     return updateObject(state, {
         data: action.data,
         start_edit: true,
+        EmailrequestError: null,
         requestSuccess : null,
     });
 }
@@ -128,6 +129,7 @@ const editDataStart = (state, action) => {
     return updateObject(state, {
         error: null,
         loading: true,
+        EmailrequestError: null,
         requestSuccess : null
     });
 }
@@ -163,7 +165,7 @@ const EmailRequestSuccess = (state, action) => {
     return updateObject(state, {
         EmailrequestError: null,
         EmailrequestLoading: false,
-        requestSuccess : true,
+        EmailrequestSuccess : true,
     });
 }
 
@@ -171,6 +173,7 @@ const EmailrequestFail = (state, action) => {
     return updateObject(state, {
         EmailrequestError: action.error,
         EmailrequestSuccess: false,
+        EmailrequestLoading: false,
     });
 }
 
