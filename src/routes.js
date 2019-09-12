@@ -63,7 +63,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    sidebar: true,
+    sidebar: false,
     path: "/EditarObjeto/:id",
     name: "Editar Objeto",
     icon: DevicesOther,

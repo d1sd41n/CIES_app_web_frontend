@@ -58,7 +58,6 @@ const useStyles = makeStyles(theme => ({
 
 
 function EditVisitorForm(props) {
-  console.log(props)
   const style = useStyles();
   const [state, setState] = useState({ lost: props.data.lost, id: props.data.id},);
 
@@ -69,7 +68,7 @@ function EditVisitorForm(props) {
     data.lost = !data.lost;
     const url = "/items/companies/"+localStorage.getItem('company_id')+"/items/"+state.id+"/";
     props.editData(data, url); // this call the dispatch of redux
-    if(state.lost === false){
+    if(state.lost == false){
       const urlEmail = "/emailing/companies/"+localStorage.getItem('company_id')+"/seats/"+localStorage.getItem('seat_id')+"/email/";
       props.EmailRequest(state, urlEmail);
     }
@@ -193,8 +192,8 @@ function EditVisitorForm(props) {
                   Cambiar estado a Encontrado
                   </Button>
                   <p style={{color:"gray"}}>Al cambiar el estado de perdido a encontrado se enviará 
-                                              un email automaticamente al usuario informandole de la aparición 
-                                              del objeto</p>
+                                              un email automaticamente al dueño informandole de la aparición 
+                                              de su pertenencia</p>
                 </div>
                 : // else
                   <div>

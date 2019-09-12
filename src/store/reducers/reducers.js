@@ -122,6 +122,8 @@ const initializingEdit = (state, action) => {
         start_edit: true,
         EmailrequestError: null,
         requestSuccess : null,
+        EmailrequestSuccess: false,
+        EmailrequestLoading: false,
     });
 }
 
@@ -130,7 +132,9 @@ const editDataStart = (state, action) => {
         error: null,
         loading: true,
         EmailrequestError: null,
-        requestSuccess : null
+        requestSuccess : null,
+        EmailrequestSuccess: false,
+        EmailrequestLoading: false,
     });
 }
 
