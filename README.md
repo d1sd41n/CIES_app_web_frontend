@@ -10,8 +10,7 @@ hay que hacer que los campos invalidos sean diferentes a 400.
 
 5- en el backend hay un borrado en cascada, al eliminar un usuario se eliminará los visistantes que haya registrado, items(confirmado), posiblemente tambien otros datos como compañias creadas, sedes etc..
 
-
-
+6- en historial se debe organizar el formato de la fecha y la hora desde el backend ademas se debe agregar color
 --------------------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
