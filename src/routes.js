@@ -5,6 +5,7 @@ import Person from "@material-ui/icons/Person";
 import DevicesOther from "@material-ui/icons/DevicesOther";
 import Wc from "@material-ui/icons/Wc";
 import SwapHoriz from "@material-ui/icons/SwapHoriz";
+import LineStyle from "@material-ui/icons/LineStyle";
 // core components/views for Admin layout
 // import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import Users from "./views/Users/Users.jsx";
@@ -14,6 +15,7 @@ import EditVisitor from "./views/Visitors/EditVisitor.jsx";
 import Items from "./views/Items/Items.jsx";
 import EditItem from "./views/Items/EditItem";
 import Records from "./views/Records/Records";
+import Codes from "./views/Codes/Codes";
 
 const dashboardRoutes = [
   // {
@@ -78,6 +80,14 @@ const dashboardRoutes = [
     name: "Historial",
     icon: SwapHoriz,
     component: Records,
+    layout: "/admin"
+  },
+  {
+    sidebar: true,
+    path: "/generateCodes",
+    name: "Generar codigos Qr",
+    icon: LineStyle,
+    component: Codes,
     layout: "/admin"
   },
 ];
