@@ -11,7 +11,7 @@ import GridContainer from "../../components/Grid/GridContainer.jsx";
 import Card from "../../components/Card/Card.jsx";
 import CardHeader from "../../components/Card/CardHeader.jsx";
 import CardBody from "../../components/Card/CardBody.jsx";
-import RecordsTable from "../../components/Table/RecordsTable.jsx";
+import CodesForm from "../../components/InputForms/generateCodesForm.jsx";
 // Redux store
 import * as actions from '../../store/actions/actions';
 
@@ -70,6 +70,7 @@ function Records(props) {
             </p>
           </CardHeader>
           <CardBody>
+          <CodesForm/>
           </CardBody>
         </Card>
       </GridItem>

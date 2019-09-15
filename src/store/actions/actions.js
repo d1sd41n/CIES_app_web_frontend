@@ -165,9 +165,10 @@ export const postDataStart = () => {
     }
 }
 
-export const postDataSuccess = () => {
+export const postDataSuccess = (data) => {
     return {
         type: actionTypes.POST_DATA_SUCCESS,
+        data: data,
     }
 }
 
@@ -182,7 +183,8 @@ export const postData = (data, url)  => {
           };
         axios.post(backendUrl + url, data, {headers})
             .then(res => {
-                dispatch(postDataSuccess());
+                const data = res.data;
+                dispatch(postDataSuccess(data));
             })
             .catch(err => {
                 dispatch(requestFail(err))
