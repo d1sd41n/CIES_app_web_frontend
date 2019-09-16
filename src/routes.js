@@ -1,7 +1,5 @@
 // @material-ui/icons
-import Dashboard from "@material-ui/icons/Dashboard";
 import People from "@material-ui/icons/People";
-import Person from "@material-ui/icons/Person";
 import DevicesOther from "@material-ui/icons/DevicesOther";
 import Wc from "@material-ui/icons/Wc";
 import SwapHoriz from "@material-ui/icons/SwapHoriz";
@@ -18,14 +16,6 @@ import Records from "./views/Records/Records";
 import Codes from "./views/Codes/Codes";
 
 const dashboardRoutes = [
-  // {
-  //   sidebar: true,
-  //   path: "/dashboard",
-  //   name: "Dashboard",
-  //   icon: Dashboard,
-  //   component: DashboardPage,
-  //   layout: "/admin"
-  // },
   {
     sidebar: true,
     path: "/usuarios",

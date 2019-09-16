@@ -62,7 +62,7 @@ function EditItem(props) {
   const { classes } = props;
   const style = useStyles();
 
-  useEffect(() => {
+  useEffect((props) => {
     props.onTryAutoSignup();
     }, []);
 

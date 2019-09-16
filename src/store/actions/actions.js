@@ -217,7 +217,6 @@ export const deleteData = (url) => {
           };
         axios.delete(backendUrl + url, {headers})
             .then(res => {
-                const data = res.data;
                 dispatch(deleteDataSuccess());
             })
             .catch(err => {

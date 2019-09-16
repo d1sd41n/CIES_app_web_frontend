@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import { makeStyles } from '@material-ui/core/styles';
 // core components
 import GridItem from "../../components/Grid/GridItem.jsx";
 import GridContainer from "../../components/Grid/GridContainer.jsx";
@@ -50,14 +49,9 @@ function Records(props) {
   const { classes } = props;
 
   useEffect(() => {
-    props.onTryAutoSignup();
+    props.onTryAutoSignup(props);
   });
-
-  const Edit = (id, data) => {
-    // send us to the form to edit the visistor with its id
-    props.initializingEdit(data);
-    props.history.push('/admin/editarvisitante/'+id);
-  }
+  
 
   return (
     <GridContainer>

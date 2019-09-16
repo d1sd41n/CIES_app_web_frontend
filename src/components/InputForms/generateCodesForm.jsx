@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 // @material-ui/core components
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -15,8 +14,6 @@ import FormLabel from '@material-ui/core/FormLabel'
 import CircularProgress from '@material-ui/core/CircularProgress';
 // core redux
 import * as actions from '../../store/actions/actions';
-// Variables and other utilities
-import getErrorMessages from '../../variables/dataFieldNames.js';
 
 
 
@@ -61,9 +58,9 @@ const useStyles = makeStyles(theme => ({
 function UserForm(props) {
   const style = useStyles();
   const [state, setState] = useState({ pages: "1",},);
-  console.log(props);
+
   
-  useEffect(() => {
+  useEffect((props) => {
     props.initializingForm();
     }, []);
 
@@ -75,20 +72,18 @@ function UserForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = state.pages;
-    const url = "/codes/companies/1/seats/1/generate_codes/";
+    const url = "/codes/companies/"+localStorage.getItem('company_id')+"/seats/"+localStorage.getItem('seat_id')+"/generate_codes/";
     props.postData(state, url); // this call the dispatch of redux
   }
 
   let errorMessage = null;
     if (props.error) { //this helps to show error message if the auth fail is dispatched
-      console.log(props.error.response.data)
         
       if("Request failed with status code 429" === props.error.message){
         errorMessage = ( // if the error is not invalid auth credentials, shows whatever error is
           <div>
             <br /><hr className={style.hr} />
-            <p style={{color:"red"}}>{"ALTO: " + "Solo se pueden generar codigos QR por un maximo de tres veces al dia, usted ya ha superado ese limite, mañana podrá seguir generando"}</p>
+            <p style={{color:"red"}}>{"ALTO: Solo se pueden generar codigos QR por un maximo de tres veces al dia, usted ya ha superado ese limite, mañana podrá seguir generando"}</p>
             <hr className={style.hr} /><br />
           </div>
         )
@@ -107,6 +102,8 @@ function UserForm(props) {
       //download the pdf file whit the qrscodes after generate them
       const FileDownload = require('js-file-download');
       FileDownload(props.data, 'codigosCIES.pdf');
+      alert('Se han generado con exito los codigos qr en unos segundos se descargará el archivo: "codigosCIES.pdf"');
+      props.initializingForm();
     }
 
   return (
@@ -130,6 +127,7 @@ function UserForm(props) {
                 <FormControl component="fieldset" className={style.formControl}>
                     <FormLabel component="legend">Numero de paginas a generar</FormLabel>
                     <RadioGroup
+                    autoFocus
                     aria-label="type"
                     name="pages"
                     className={style.group}

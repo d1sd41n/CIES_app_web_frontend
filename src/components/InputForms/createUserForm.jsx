@@ -65,10 +65,9 @@ function UserForm(props) {
                                        password: "", type: "Guard",
                                        dni: "", confirmPassword: "",},);
   
-  useEffect(() => {
+  useEffect((props) => {
     props.initializingForm();
     }, []);
-    console.log(state)
 
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value});
