@@ -65,7 +65,7 @@ function UserForm(props) {
                                        password: "", type: "Guard",
                                        dni: "", confirmPassword: "",},);
   
-  useEffect((props) => {
+  useEffect(() => {
     props.initializingForm();
     }, []);
 

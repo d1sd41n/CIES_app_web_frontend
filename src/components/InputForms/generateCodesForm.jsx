@@ -60,7 +60,7 @@ function UserForm(props) {
   const [state, setState] = useState({ pages: "1",},);
 
   
-  useEffect((props) => {
+  useEffect(() => {
     props.initializingForm();
     }, []);
 
