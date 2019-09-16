@@ -63,11 +63,12 @@ function UserForm(props) {
   const [state, setState] = useState({ username: "", first_name: "",
                                        last_name: "", email: "",
                                        password: "", type: "Guard",
-                                       dni: ""},);
+                                       dni: "", confirmPassword: "",},);
   
   useEffect(() => {
     props.initializingForm();
     }, []);
+    console.log(state)
 
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value});
@@ -77,7 +78,11 @@ function UserForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.postData(state, props.url); // this call the dispatch of redux
+    if (state.password !== state.confirmPassword) {
+      alert("Las contraseñas no coinciden, corrijalas porfavor");
+    } else {
+      props.postData(state, props.url); // this call the dispatch of redux
+    }
   }
 
   let errorMessage = null;
@@ -196,6 +201,7 @@ function UserForm(props) {
                     />
                 </Grid>
                 <Grid item xs={12}>
+                    <p style={{color:"gray"}}>La contraseña debe tener al menos 8 caracteres</p>
                     <TextField
                     type="password"
                     variant="outlined"
@@ -208,7 +214,19 @@ function UserForm(props) {
                     inputProps={{ minLength: 8 }}
                     onChange={handleChange}
                     />
-                    <p style={{color:"gray"}}>La contraseña debe tener al menos 8 caracteres</p>
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="confirmPassword"
+                    label="confirmar contraseña"
+                    type="password"
+                    id="confirmPassword"
+                    inputProps={{ minLength: 8 }}
+                    onChange={handleChange}
+                    />
                 </Grid>
                 {errorMessage } 
                 </Grid>
