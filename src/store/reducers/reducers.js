@@ -21,6 +21,8 @@ const initialState = {
     EmailrequestSuccess : false,
     EmailrequestError: null, 
     EmailrequestLoading: false,
+    //codes variables
+    codeCreateSuccess : false,
 }
 
 // Auth ###########################################
@@ -77,6 +79,7 @@ const getDataSuccess = (state, action) => {
 const initializingForm = (state, action) => {
     return updateObject(state, {
         requestSuccess : false,
+        codeCreateSuccess : false,
         data: [],
     });
 }
@@ -152,7 +155,7 @@ const editDataSuccess = (state, action) => {
 const requestFail = (state, action) => {
     return updateObject(state, {
         error: action.error,
-        loading: false
+        loading: false,
     });
 }
 
@@ -183,6 +186,28 @@ const EmailrequestFail = (state, action) => {
 }
 
 
+// postdata ###########################################
+
+const generateCodesStart = (state, action) => {
+    return updateObject(state, {
+        error: null,
+        loading: true,
+        requestSuccess : null,
+        codeCreateSuccess : false,
+    });
+}
+
+const generateCodesSuccess = (state, action) => {
+    return updateObject(state, {
+        error: null,
+        loading: false,
+        requestSuccess : true,
+        data: action.data,
+        codeCreateSuccess : true,
+    });
+}
+
+
 const reducer = (state=initialState, action) => {
     switch (action.type) {
         // Auth reducers
@@ -208,6 +233,9 @@ const reducer = (state=initialState, action) => {
         case actionTypes.EMAIL_REQUEST_START: return EmailRequestStart(state, action);
         case actionTypes.EMAIL_REQUEST_SUCCESS: return EmailRequestSuccess(state, action);
         case actionTypes.EMAIL_REQUEST_FAIL: return EmailrequestFail(state, action);
+        //post data reducers
+        case actionTypes.GENERATE_CODES_START: return generateCodesStart(state, action);
+        case actionTypes.GENERATE_CODES_SUCCESS: return generateCodesSuccess(state, action);
 
 
         // request fail

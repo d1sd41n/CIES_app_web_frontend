@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from "react";
+import React , { useState } from "react";
 import { connect } from 'react-redux';
 // @material-ui/core components
 import Button from '@material-ui/core/Button';
@@ -68,7 +68,7 @@ function EditVisitorForm(props) {
     data.lost = !data.lost;
     const url = "/items/companies/"+localStorage.getItem('company_id')+"/items/"+state.id+"/";
     props.editData(data, url); // this call the dispatch of redux
-    if(state.lost == false){
+    if(state.lost === false){
       const urlEmail = "/emailing/companies/"+localStorage.getItem('company_id')+"/seats/"+localStorage.getItem('seat_id')+"/email/";
       props.EmailRequest(state, urlEmail);
     }
@@ -83,7 +83,7 @@ function EditVisitorForm(props) {
         errorMessage = ( // if the error is not invalid auth credentials, shows whatever error is
           <div>
             <br /><hr className={style.hr} />
-            <p style={{color:"red"}}>{"Advertencia: " + "No se han podido guardar los cambios en el servidor"}</p>
+            <p style={{color:"red"}}>{"Advertencia: No se han podido guardar los cambios en el servidor"}</p>
             <p style={{color:"red"}}>{"ERROR: " + props.error.message}</p>
             <hr className={style.hr} /><br />
           </div>
@@ -95,7 +95,7 @@ function EditVisitorForm(props) {
       EmailerrorMessage = ( // if the error is not invalid auth credentials, shows whatever error is
         <div>
           <br /><hr className={style.hr} />
-          <p style={{color:"red"}}>{"Advertencia: " + "No se ha podido enviar el email"}</p>
+          <p style={{color:"red"}}>{"Advertencia: No se ha podido enviar el email"}</p>
           <p style={{color:"red"}}>{"ERROR: " + props.EmailrequestError.message}</p>
           <hr className={style.hr} /><br />
         </div>

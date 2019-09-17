@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-function UserForm(props) {
+function GenerarteCodesForm(props) {
   const style = useStyles();
   const [state, setState] = useState({ pages: "1",},);
 
@@ -73,7 +73,7 @@ function UserForm(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const url = "/codes/companies/"+localStorage.getItem('company_id')+"/seats/"+localStorage.getItem('seat_id')+"/generate_codes/";
-    props.postData(state, url); // this call the dispatch of redux
+    props.generateCodes(state, url); // this call the dispatch of redux
   }
 
   let errorMessage = null;
@@ -98,11 +98,17 @@ function UserForm(props) {
         );}
     }
 
-    if (props.requestSuccess){
+    if (props.codeCreateSuccess){
       //download the pdf file whit the qrscodes after generate them
+      let today = new Date();
+      const dd = String(today.getDate()).padStart(2, '0');
+      const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      const yyyy = today.getFullYear();
+
+      today = mm + '/' + dd + '/' + yyyy;
       const FileDownload = require('js-file-download');
-      FileDownload(props.data, 'codigosCIES.pdf');
-      alert('Se han generado con exito los codigos qr en unos segundos se descargará el archivo: "codigosCIES.pdf"');
+      FileDownload(props.data, 'codigosCIES_'+today+'.pdf');
+      alert('Se han generado con exito los codigos qr en un instante se descargará el archivo: "codigosCIES_'+today+'.pdf"');
       props.initializingForm();
     }
 
@@ -173,15 +179,16 @@ function mapStateToProps(state) { // this pass the items of the state we choose 
     loading: state.loading,
     error: state.error,
     requestSuccess: state.requestSuccess,
+    codeCreateSuccess: state.codeCreateSuccess,
     data: state.data,
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    postData: (data, url) => dispatch(actions.postData(data, url)),
+    generateCodes: (data, url) => dispatch(actions.generateCodes(data, url)),
     initializingForm: () => dispatch(actions.initializingForm()),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserForm);
+export default connect(mapStateToProps, mapDispatchToProps)(GenerarteCodesForm);

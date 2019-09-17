@@ -15,7 +15,6 @@ import Poppers from "@material-ui/core/Popper";
 import Divider from "@material-ui/core/Divider";
 // @material-ui/icons
 import Person from "@material-ui/icons/Person";
-import Search from "@material-ui/icons/Search";
 // core components
 import Button from "../CustomButtons/Button.jsx";
 

@@ -308,3 +308,39 @@ export const EmailRequest = (data, url)  => {
             })
     }
 }
+
+
+// POST_DATA
+
+export const generateCodesStart = () => {
+    return {
+        type: actionTypes.GENERATE_CODES_START
+    }
+}
+
+export const generateCodesSuccess = (data) => {
+    return {
+        type: actionTypes.GENERATE_CODES_SUCCESS,
+        data: data,
+    }
+}
+
+export const generateCodes = (data, url)  => {
+    return dispatch => {
+        dispatch(generateCodesStart());
+        const token = localStorage.getItem('token');
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Token ' + token,
+            'Accept-Language': 'es-ES,es;q=0.8',
+          };
+        axios.post(backendUrl + url, data, {headers})
+            .then(res => {
+                const data = res.data;
+                dispatch(generateCodesSuccess(data));
+            })
+            .catch(err => {
+                dispatch(requestFail(err))
+            })
+    }
+}
