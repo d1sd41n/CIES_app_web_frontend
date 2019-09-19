@@ -1,5 +1,6 @@
 import React, {useEffect } from "react";
 import { connect } from 'react-redux';
+import moment from 'moment'
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // @material-ui/core components
@@ -73,7 +74,10 @@ function Records(props) {
             <RecordsTable 
             tableHead={[
               { title: 'Entro(✔) Salio(-)', field: 'go_in', type: 'boolean'},
-              { title: 'Fecha', field: 'date' , type: 'date'},
+              { title: 'Fecha Hora', field: 'date' , type: 'datetime', 
+                                      render: function(rowData){
+                                          const d = moment(rowData.date).format('MM/DD/YYYY h:mm a');
+                                          return d} },
               { title: 'Tipo de objeto', field: 'type_item' },
               { title: 'Marca', field: 'brand' },
               { title: 'Nombre dueño', field: 'owner_name', },
