@@ -30,6 +30,7 @@ function Table({ ...props }) {
 
 
   useEffect(() => {
+    props.initializingForm();
     props.getData(props.url);
   }, []);
 
@@ -44,12 +45,30 @@ function Table({ ...props }) {
         );
     }
 
+    if(props.DeleterequestSuccess){
+      window.alert("Se ha eliminado el usuario con exito");
+      window.location.reload(false);
+    }
+    // else if (condition2) {
+    // }
+
+
+
+
   return (
     <div>
        {props.loading ?  //if this.props.loading==true: shows loading icon
         <div>
           <p >Cargando datos...</p>
           <CircularProgress  className={classes.progress}/>
+        </div>
+        :
+        <div></div>}
+
+      {props.DeleterequestLoading ?  //delete user loading
+        <div>
+          <p >Eliminando usario...</p>
+          <CircularProgress  className={classes.progress} color="secondary"/>
         </div>
         :
         <div></div>}
@@ -66,8 +85,9 @@ function Table({ ...props }) {
           icon: 'delete',
           tooltip: 'Eliminar usuario',
           onClick: (event, rowData) => {
-            // Do save operation
-            props.Delete(rowData.id);
+            if (window.confirm("¿Esta seguro que desea eliminar este Usuario?")){
+              props.Delete(rowData.id);
+            }
           }
         },
         
@@ -102,13 +122,17 @@ function mapStateToProps(state) { // this pass the items of the state we choose 
     loading: state.loading,
     error: state.error,
     data: state.data,
+    // delete variables
+    DeleterequestSuccess : state.DeleterequestSuccess,
+    DeleterequestError: state.DeleterequestError, 
+    DeleterequestLoading: state.DeleterequestLoading,
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     getData: (url) => dispatch(actions.getData(url)),
-    postData: (data) => dispatch(actions.postData(data)),
+    initializingForm: () => dispatch(actions.initializingForm()),
   }
 }
 

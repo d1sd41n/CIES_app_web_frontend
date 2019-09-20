@@ -58,7 +58,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-function TableList(props) {
+function Users(props) {
+  console.log(props)
   const { classes } = props;
   const style = useStyles();
 
@@ -70,6 +71,9 @@ function TableList(props) {
     // send us to the form to edit the visistor with its id
     // props.history.push('/admin/editarvisitante/'+id);
     console.log("delete", id)
+    const url = '/core/companies/1/seats/1/users/'+id+'/';
+    props.deleteData(url);
+    // window.location.reload(false);
   }
 
   return (
@@ -111,7 +115,7 @@ function TableList(props) {
   );
 }
 
-TableList.propTypes = {
+Users.propTypes = {
   classes: PropTypes.object
 };
 
@@ -124,7 +128,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     onTryAutoSignup: () => dispatch(actions.authCheckState()),
+    deleteData: (url) => dispatch(actions.deleteData(url)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(TableList));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Users));

@@ -206,6 +206,13 @@ export const deleteDataSuccess = () => {
     }
 }
 
+export const deleteDataFail = (error) => {
+    return {
+        type: actionTypes.DELETE_DATA_FAIL,
+        DeleterequestError: error
+    }
+}
+
 export const deleteData = (url) => {
     return dispatch => {
         dispatch(deleteDataStart());
@@ -220,7 +227,7 @@ export const deleteData = (url) => {
                 dispatch(deleteDataSuccess());
             })
             .catch(err => {
-                dispatch(requestFail(err))
+                dispatch(deleteDataFail(err))
             })
     }
 }

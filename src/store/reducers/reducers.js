@@ -23,6 +23,10 @@ const initialState = {
     EmailrequestLoading: false,
     //codes variables
     codeCreateSuccess : false,
+    /// delete variables
+    DeleterequestSuccess : false,
+    DeleterequestError: null, 
+    DeleterequestLoading: false,
 }
 
 // Auth ###########################################
@@ -74,15 +78,20 @@ const getDataSuccess = (state, action) => {
     });
 }
 
-// postdata ###########################################
+// Initializing form ###########################################
 
 const initializingForm = (state, action) => {
     return updateObject(state, {
         requestSuccess : false,
         codeCreateSuccess : false,
         data: [],
+        DeleterequestSuccess : false,
+        DeleterequestError: null, 
+        DeleterequestLoading: false,
     });
 }
+
+// postdata ###########################################
 
 const postDataStart = (state, action) => {
     return updateObject(state, {
@@ -105,18 +114,26 @@ const postDataSuccess = (state, action) => {
 
 const deleteDataStart = (state, action) => {
     return updateObject(state, {
-        error: null,
-        loading: true
+        DeleterequestSuccess : false,
+        DeleterequestError: null, 
+        DeleterequestLoading: true,
     });
 }
 
 const deleteDataSuccess = (state, action) => {
     return updateObject(state, {
-        error: null,
-        loading: false,
+        DeleterequestError: null, 
+        DeleterequestLoading: false,
+        DeleterequestSuccess : true,
     });
 }
 
+const deleteDataFail = (state, action) => {
+    return updateObject(state, {
+        DeleterequestError: action.DeleterequestError,
+        DeleterequestLoading: false,
+    });
+}
 
 // editData ###########################################
 

@@ -15,6 +15,7 @@ export const POST_DATA_SUCCESS = 'POST_DATA_SUCCESS';
 //delete data
 export const DELETE_DATA_START = 'DELETE_DATA_START';
 export const DELETE_DATA_SUCCESS = 'DELETE_DATA_SUCCESS';
+export const DELETE_DATA_FAIL = 'DELETE_DATA_FAIL';
 //edit data
 export const INITIALIZING_EDIT= 'INITIALIZING_EDIT';
 export const EDIT_DATA_START = 'EDIT_DATA_START';
