@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
 
 
 function Table({ ...props }) {
+  console.log(props)
   const classes = useStyles();
 
 
@@ -66,8 +67,7 @@ function Table({ ...props }) {
           tooltip: 'Eliminar usuario',
           onClick: (event, rowData) => {
             // Do save operation
-            const result = window.confirm("¿Esta seguro que desea eliminar este usuario?");
-            console.log(result, rowData);
+            props.Delete(rowData.id);
           }
         },
         

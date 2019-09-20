@@ -17,15 +17,9 @@ import headerStyle from "../../assets/jss/material-dashboard-react/components/he
 
 function Header({ ...props }) {
   function makeBrand() {
-    var name;
-    props.routes.map(prop => {
-      // return the name of the current brand (place where we we are)
-      if (window.location.href.indexOf(prop.layout + prop.path) !== -1) {
-        name = prop.name;
-      }
-      return null;
-    });
-    return name;
+    const name = localStorage.getItem('name');
+    const last_name = localStorage.getItem('last_name');
+    return name + " "+last_name;
   }
   const { classes, color } = props;
   const appBarClasses = classNames({
@@ -37,8 +31,12 @@ function Header({ ...props }) {
         <div className={classes.flex}>
           {/* this part is the name of the brand (place where we are) in the header */}
           <Button color="transparent" href="#" className={classes.title}>
+            {"SENA - centro de servicio y gestion empresarial"}
+          </Button>
+          <Button color="transparent" href="#" className={classes.title}>
             {makeBrand()}
           </Button>
+
         </div>
         <Hidden smDown implementation="css">
           {/* this is the buttons in the right of header (searchr, notifications user, etc) */}

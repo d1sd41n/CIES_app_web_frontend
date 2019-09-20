@@ -15,14 +15,15 @@ import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // core redux
 import * as actions from '../store/actions/actions';
-// core components
+
+import logo from "../assets/img/logo-login.png";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Evol
       </Link>{' '}
       {new Date().getFullYear()}
       {'. Built with '}
@@ -63,6 +64,10 @@ const useStyles = makeStyles(theme => ({
     color: "red",
     backgroundColor: "red",
     height: 3
+  },
+  img:{
+    height: '100px',
+    padding: '5px',
   }
 }));
 
@@ -107,12 +112,7 @@ function SignIn(props) {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
+        <img src={logo} alt="logo" className={classes.img} />
         {props.loading ?  //if this.props.loading==true: shows loading icon
         <div>
           <p style={{color:"blue"}}>Autentificando...</p>
@@ -154,7 +154,7 @@ function SignIn(props) {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Autentificarme
           </Button>
           <Grid container>
             <Grid item xs>

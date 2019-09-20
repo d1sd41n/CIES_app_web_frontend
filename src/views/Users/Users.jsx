@@ -66,6 +66,12 @@ function TableList(props) {
     props.onTryAutoSignup();
   });
 
+  const Delete = (id) => {
+    // send us to the form to edit the visistor with its id
+    // props.history.push('/admin/editarvisitante/'+id);
+    console.log("delete", id)
+  }
+
   return (
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
@@ -96,6 +102,7 @@ function TableList(props) {
               { title: 'id', field: 'id'},
             ]}
             url={'/core/companies/'+localStorage.getItem('company_id')+'/seats/'+localStorage.getItem('company_id')+'/users/'}
+            Delete = {Delete}
             />
           </CardBody>
         </Card>
