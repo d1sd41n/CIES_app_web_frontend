@@ -228,6 +228,7 @@ export const deleteData = (url) => {
             })
             .catch(err => {
                 dispatch(deleteDataFail(err))
+                console.log(err)
             })
     }
 }

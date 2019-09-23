@@ -152,7 +152,7 @@ function SignIn(props) {
             color="primary"
             className={classes.submit}
           >
-            Autentificarme
+            Iniciar Sesion
           </Button>
           <Grid container>
             <Grid item xs>

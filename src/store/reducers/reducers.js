@@ -242,6 +242,7 @@ const reducer = (state=initialState, action) => {
         //delete data reducers
         case actionTypes.DELETE_DATA_START: return deleteDataStart(state, action);
         case actionTypes.DELETE_DATA_SUCCESS: return deleteDataSuccess(state, action);
+        case actionTypes.DELETE_DATA_FAIL: return deleteDataFail(state, action);
         //edit data reducers
         case actionTypes.INITIALIZING_EDIT: return initializingEdit(state, action);
         case actionTypes.EDIT_DATA_START: return editDataStart(state, action);

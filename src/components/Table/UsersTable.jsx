@@ -44,13 +44,23 @@ function Table({ ...props }) {
             </div>
         );
     }
+    // delete user error
+    let DeleteErrorMessage = null;
+    if (props.DeleterequestError) { //this helps to show error message if the get fail is dispatched
+       DeleteErrorMessage = ( // if the error is not invalid auth credentials, shows whatever error is
+            <div>
+              <br /><hr className={classes.hr} />
+              <p style={{color:"red"}}>{"Advertencia: No se ha podido eliminar el usuario"}</p>
+              <p style={{color:"red"}}>{"ERROR: " + props.DeleterequestError.message}</p>
+              <hr className={classes.hr} /><br />
+            </div>
+        );
+    }
 
     if(props.DeleterequestSuccess){
       window.alert("Se ha eliminado el usuario con exito");
       window.location.reload(false);
     }
-    // else if (condition2) {
-    // }
 
 
 
@@ -75,6 +85,7 @@ function Table({ ...props }) {
     
     {/* shows error message if we have an error */}
     {errorMessage }
+    {DeleteErrorMessage }
     
     <MaterialTable
       title=""
