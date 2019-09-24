@@ -84,7 +84,7 @@ function Records(props) {
               { title: 'Apellido dueño', field: 'owner_last_name'},
               { title: 'Cedula dueño', field: 'owner_dni'},
               { title: 'Estado: Perdido(✔) Encontrado(-)', field: 'lost', type: 'boolean'},
-              { title: 'id', field: 'id'},
+              { title: 'id', field: 'id', hidden: true},
             ]}
             // url={'/core/companies/'+localStorage.getItem('company_id')+'/visitors/'}
             url={'/items/companies/1/seats/1/check/'}

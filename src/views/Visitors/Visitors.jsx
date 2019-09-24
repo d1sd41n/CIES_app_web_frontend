@@ -77,7 +77,7 @@ function Visitors(props) {
               { title: 'Cedula', field: 'dni'},
               { title: 'Email', field: 'email', },
               { title: 'Telefono', field: 'phone'},
-              { title: 'id', field: 'id'},
+              { title: 'id', field: 'id', hidden: true},
             ]}
             url={'/core/companies/'+localStorage.getItem('company_id')+'/visitors/'}
             history={props.history}

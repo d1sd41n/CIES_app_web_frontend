@@ -12,7 +12,6 @@ import Paper from "@material-ui/core/Paper";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Hidden from "@material-ui/core/Hidden";
 import Poppers from "@material-ui/core/Popper";
-import Divider from "@material-ui/core/Divider";
 // @material-ui/icons
 import Person from "@material-ui/icons/Person";
 // core components
@@ -92,13 +91,6 @@ class AdminNavbarLinks extends React.Component {
                   <ClickAwayListener onClickAway={this.handleCloseProfile}>
                     <MenuList role="menu">
                       <MenuItem
-                        onClick={this.handleCloseProfile}
-                        className={classes.dropdownItem}
-                      >
-                        Mi perfil
-                      </MenuItem>
-                      <Divider light />
-                      <MenuItem
                         onClick={this.logout}
                         className={classes.dropdownItem}
                       >
@@ -119,8 +111,6 @@ class AdminNavbarLinks extends React.Component {
 AdminNavbarLinks.propTypes = {
   classes: PropTypes.object
 };
-
-// export default withStyles(headerLinksStyle)(AdminNavbarLinks);
 
 
 const mapStateToProps = (state) => {

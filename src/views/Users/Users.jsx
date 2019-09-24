@@ -103,7 +103,7 @@ function Users(props) {
               { title: 'Email', field: 'email', },
               { title: 'Nombre De Usuario', field: 'username'},
               { title: 'Tipo De Usuario', field: 'type'},
-              { title: 'id', field: 'id'},
+              { title: 'id', field: 'id', hidden: true},
             ]}
             url={'/core/companies/'+localStorage.getItem('company_id')+'/seats/'+localStorage.getItem('company_id')+'/users/'}
             Delete = {Delete}
