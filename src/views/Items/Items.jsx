@@ -58,6 +58,13 @@ function Items(props) {
     props.history.push('/admin/EditarObjeto/'+id);
   }
 
+  const Delete = (id) => {
+    // send us to the form to edit the visistor with its id
+    console.log(id)
+    const url = '/items/companies/'+localStorage.getItem('company_id')+'/items/'+id+'/';
+    props.deleteData(url);
+  }
+
   return (
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
@@ -80,11 +87,12 @@ function Items(props) {
               { title: 'Estado: Perdido(✔) Encontrado(-)', field: 'lost', type: 'boolean'},
               { title: 'Referencia/serial', field: 'reference'},
               { title: 'Color', field: 'color'},
-              { title: 'id', field: 'id', hidden: true},
+              { title: 'id', field: 'id'},
             ]}
             url={'/items/companies/'+localStorage.getItem('company_id')+'/items/'}
             history={props.history}
             Edit = {Edit}
+            Delete = {Delete}
             />
           </CardBody>
         </Card>
@@ -107,6 +115,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onTryAutoSignup: () => dispatch(actions.authCheckState()),
     initializingEdit: (data) => dispatch(actions.initializingEdit(data)),
+    deleteData: (url) => dispatch(actions.deleteData(url)),
   }
 }
 

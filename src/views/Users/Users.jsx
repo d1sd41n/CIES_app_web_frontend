@@ -59,7 +59,6 @@ const useStyles = makeStyles(theme => ({
 
 
 function Users(props) {
-  console.log(props)
   const { classes } = props;
   const style = useStyles();
 
@@ -69,11 +68,8 @@ function Users(props) {
 
   const Delete = (id) => {
     // send us to the form to edit the visistor with its id
-    // props.history.push('/admin/editarvisitante/'+id);
-    console.log("delete", id)
-    const url = '/core/companies/1/seats/1/users/'+id+'/';
+    const url = '/core/companies/'+localStorage.getItem('company_id')+'/seats/'+localStorage.getItem('company_id')+'/users/'+id+'/';
     props.deleteData(url);
-    // window.location.reload(false);
   }
 
   return (

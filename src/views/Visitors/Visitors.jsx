@@ -58,6 +58,12 @@ function Visitors(props) {
     props.history.push('/admin/editarvisitante/'+id);
   }
 
+  const Delete = (id) => {
+    // send us to the form to edit the visistor with its id
+    const url = '/core/companies/'+localStorage.getItem('company_id')+'/visitors/'+id+'/';
+    props.deleteData(url);
+  }
+
   return (
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
@@ -77,11 +83,12 @@ function Visitors(props) {
               { title: 'Cedula', field: 'dni'},
               { title: 'Email', field: 'email', },
               { title: 'Telefono', field: 'phone'},
-              { title: 'id', field: 'id', hidden: true},
+              { title: 'id', field: 'id'},
             ]}
             url={'/core/companies/'+localStorage.getItem('company_id')+'/visitors/'}
             history={props.history}
             Edit = {Edit}
+            Delete = {Delete}
             />
           </CardBody>
         </Card>
@@ -104,6 +111,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onTryAutoSignup: () => dispatch(actions.authCheckState()),
     initializingEdit: (data) => dispatch(actions.initializingEdit(data)),
+    deleteData: (url) => dispatch(actions.deleteData(url)),
   }
 }
 

@@ -25,7 +25,6 @@ const useStyles = makeStyles(theme => ({
 
 
 function Table({ ...props }) {
-  console.log(props)
   const classes = useStyles();
 
 
@@ -33,6 +32,7 @@ function Table({ ...props }) {
     props.initializingForm();
     props.getData(props.url);
   }, []);
+  
 
   let errorMessage = null;
     if (props.error) { //this helps to show error message if the get fail is dispatched

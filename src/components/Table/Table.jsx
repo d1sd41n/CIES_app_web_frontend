@@ -34,6 +34,7 @@ function Table({ ...props }) {
 
 
   useEffect(() => {
+    props.initializingForm();
     props.getData(props.url);
   }, []);
 
@@ -47,6 +48,25 @@ function Table({ ...props }) {
             </div>
         );
     }
+  // delete element error
+  let DeleteErrorMessage = null;
+  if (props.DeleterequestError) { //this helps to show error message if the get fail is dispatched
+    console.log(11111111111111)
+     DeleteErrorMessage = ( // if the error is not invalid auth credentials, shows whatever error is
+          <div>
+            <br /><hr className={classes.hr} />
+            <p style={{color:"red"}}>{"Advertencia: No se ha podido eliminar el elemento"}</p>
+            <p style={{color:"red"}}>{"ERROR: " + props.DeleterequestError.message}</p>
+            <hr className={classes.hr} /><br />
+          </div>
+      );
+  }
+
+  if(props.DeleterequestSuccess){
+    window.alert("Se ha eliminado el elemento con exito");
+    window.location.reload(false);
+  }
+
 
   return (
     <div>
@@ -59,7 +79,17 @@ function Table({ ...props }) {
         <div></div>}
     
     {/* shows error message if we have an error */}
+
+    {props.DeleterequestLoading ?  //delete user loading
+        <div>
+          <p >Eliminando usario...</p>
+          <CircularProgress  className={classes.progress} color="secondary"/>
+        </div>
+        :
+        <div></div>}
+
     {errorMessage }
+    {DeleteErrorMessage }
     
     <MaterialTable
       title=""
@@ -71,8 +101,9 @@ function Table({ ...props }) {
           tooltip: 'Eliminar elemento',
           onClick: (event, rowData) => {
             // Do save operation
-            const result = window.confirm("¿Esta seguro que desea eliminar este usuario?");
-            console.log(result, rowData);
+            if (window.confirm("¿Esta seguro que desea eliminar este elemento?")){
+              props.Delete(rowData.id);
+            }
           }
         },
         {
@@ -115,6 +146,10 @@ function mapStateToProps(state) { // this pass the items of the state we choose 
     loading: state.loading,
     error: state.error,
     data: state.data,
+    // delete variables
+    DeleterequestSuccess : state.DeleterequestSuccess,
+    DeleterequestError: state.DeleterequestError, 
+    DeleterequestLoading: state.DeleterequestLoading,
   };
 }
 
@@ -122,6 +157,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getData: (url) => dispatch(actions.getData(url)),
     postData: (data) => dispatch(actions.postData(data)),
+    initializingForm: () => dispatch(actions.initializingForm()),
   }
 }
 
