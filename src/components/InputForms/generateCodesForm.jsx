@@ -38,6 +38,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#A23DB7",
     margin: theme.spacing(3, 0, 2),
   },
+  download: {
+    backgroundColor: "blue",
+    margin: theme.spacing(3, 0, 2),
+  },
   textField: {
     marginLeft: 10,
     marginRight: theme.spacing(1),
@@ -76,6 +80,17 @@ function GenerarteCodesForm(props) {
     props.generateCodes(state, url); // this call the dispatch of redux
   }
 
+  const donwloadCodes = () => {
+    let today = new Date();
+      const dd = String(today.getDate()).padStart(2, '0');
+      const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      const yyyy = today.getFullYear();
+
+      today = mm + '/' + dd + '/' + yyyy;
+      const FileDownload = require('js-file-download');
+      FileDownload(props.data, 'codigosCIES_'+today+'.pdf');
+  }
+
   let errorMessage = null;
     if (props.error) { //this helps to show error message if the auth fail is dispatched
         
@@ -100,16 +115,8 @@ function GenerarteCodesForm(props) {
 
     if (props.codeCreateSuccess){
       //download the pdf file whit the qrscodes after generate them
-      let today = new Date();
-      const dd = String(today.getDate()).padStart(2, '0');
-      const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-      const yyyy = today.getFullYear();
-
-      today = mm + '/' + dd + '/' + yyyy;
-      const FileDownload = require('js-file-download');
-      FileDownload(props.data, 'codigosCIES_'+today+'.pdf');
-      alert('Se han generado con exito los codigos qr en un instante se descargará el archivo: "codigosCIES_'+today+'.pdf"');
-      props.initializingForm();
+      alert('Se han generado con exito los codigos qr, haga click en el boton azul para descargar el archivo .pdf con los codigos');
+      // props.initializingForm();
     }
 
   return (
@@ -124,6 +131,20 @@ function GenerarteCodesForm(props) {
           </div>
           :
           <div></div>}
+
+
+          {props.codeCreateSuccess ?  //if this.props.loading==true: shows loading icon
+            <Button
+              variant="contained"
+              color="primary"
+              className={style.download}
+              onClick={donwloadCodes}
+            >
+                Descargar archivo con los codigos
+            </Button>
+          :
+           <div></div>}
+
             <form className={style.form}  onSubmit={handleSubmit} >
                 <Grid container spacing={2}>
                 <Grid item xs={12}>
@@ -163,8 +184,8 @@ function GenerarteCodesForm(props) {
 
             {props.requestSuccess ?  //if the user creation is successful 
               <div>
-                <p style={{color:"green", fontSize:20}}>Se han generado con exito los codigos qr
-                                                        en unos segundos se descargará el archivo: "codigosCIES.pdf"
+                <p style={{color:"green", fontSize:20}}>Se han generado con exito los codigos qr,
+                                                        haga click en el boton azul para descargar el archivo .pdf con los codigos
                                                         </p>
               </div>
               :
