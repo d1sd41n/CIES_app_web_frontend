@@ -36,6 +36,9 @@ export const logout = () => {
     localStorage.removeItem('user_id');
     localStorage.removeItem('company_id');
     localStorage.removeItem('seat_id');
+    localStorage.removeItem('company_name');
+    localStorage.removeItem('seat_name');
+    localStorage.removeItem('type');
     return {
         type: actionTypes.AUTH_LOGOUT
     };
@@ -61,12 +64,16 @@ export const authLogin = (username, password) => {
             password: password
         }, {headers})
         .then(res => {
+            console.log(res.data)
             const token = res.data.token;
             const name = res.data.name;
             const last_name = res.data.last_name;
             const user_id = res.data.user_id;
             const company_id = res.data.company;
-            const seat_id = res.data.seat; 
+            const seat_id = res.data.seat;
+            const company_name = res.data.company_name;
+            const seat_name = res.data.seat_name;
+            const type = res.data.type; 
 
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
 
@@ -77,6 +84,9 @@ export const authLogin = (username, password) => {
             localStorage.setItem('user_id', user_id);
             localStorage.setItem('company_id', company_id);
             localStorage.setItem('seat_id', seat_id);
+            localStorage.setItem('company_name', company_name);
+            localStorage.setItem('seat_name', seat_name);
+            localStorage.setItem('type', type);
 
             dispatch(authSuccess(token, name, last_name));
             dispatch(checkAuthTimeout(3600));

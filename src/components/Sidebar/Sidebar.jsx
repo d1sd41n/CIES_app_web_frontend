@@ -21,10 +21,12 @@ const Sidebar = ({ ...props }) => {
     return window.location.href.indexOf(routeName) > -1 ? true : false;
   }
   const { classes, color, logo, image, logoText, routes } = props;
+  const type_user = localStorage.getItem('type');
   var links = (
     <List className={classes.list}> 
       {routes.map((prop, key) => {
         if (!prop.sidebar) { return null } // only return the elements that have sidebar = true
+        else if (type_user==="Guard" &&  prop.permission) { return null } // only return the elements that have sidebar = true
         var activePro = " ";
         var listItemClasses;
         listItemClasses = classNames({

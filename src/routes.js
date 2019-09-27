@@ -22,7 +22,8 @@ const dashboardRoutes = [
     name: "Usuarios",
     icon: People,
     component: Users,
-    layout: "/admin"
+    layout: "/admin",
+    permission: true
   },
   {
     sidebar: false,
@@ -30,7 +31,8 @@ const dashboardRoutes = [
     name: "Agregar Usuario",
     icon: People,
     component: CreateUser,
-    layout: "/admin"
+    layout: "/admin",
+    permission: false
   },
   {
     sidebar: true,
@@ -38,7 +40,8 @@ const dashboardRoutes = [
     name: "Visitantes",
     icon: Wc,
     component: Visitors,
-    layout: "/admin"
+    layout: "/admin",
+    permission: false
   },
   {
     sidebar: false,
@@ -46,7 +49,8 @@ const dashboardRoutes = [
     name: "Editar Visitante",
     icon: Wc,
     component: EditVisitor,
-    layout: "/admin"
+    layout: "/admin",
+    permission: false
   },
   {
     sidebar: true,
@@ -54,7 +58,8 @@ const dashboardRoutes = [
     name: "Objetos",
     icon: DevicesOther,
     component: Items,
-    layout: "/admin"
+    layout: "/admin",
+    permission: false
   },
   {
     sidebar: false,
@@ -62,7 +67,8 @@ const dashboardRoutes = [
     name: "Editar Objeto",
     icon: DevicesOther,
     component: EditItem,
-    layout: "/admin"
+    layout: "/admin",
+    permission: false
   },
   {
     sidebar: true,
@@ -70,7 +76,8 @@ const dashboardRoutes = [
     name: "Historial",
     icon: SwapHoriz,
     component: Records,
-    layout: "/admin"
+    layout: "/admin",
+    permission: false
   },
   {
     sidebar: true,
@@ -78,7 +85,8 @@ const dashboardRoutes = [
     name: "Generar codigos Qr",
     icon: LineStyle,
     component: Codes,
-    layout: "/admin"
+    layout: "/admin",
+    permission: false
   },
 ];
 

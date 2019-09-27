@@ -25,7 +25,7 @@ function App(props){
         {  props.isAuthenticated ? // if this.props.isAuthenticated is True 
           <Switch>
             <Route path="/admin" component={Admin} />
-            <Redirect from="/" to="/admin/usuarios" />
+            <Redirect from="/" to="/admin/visitantes" />
           </Switch>
           
            : // else
