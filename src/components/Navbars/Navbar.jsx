@@ -16,10 +16,15 @@ import Button from "../CustomButtons/Button.jsx";
 import headerStyle from "../../assets/jss/material-dashboard-react/components/headerStyle.jsx";
 
 function Header({ ...props }) {
-  function makeBrand() {
+  function makeBrandUser() {
     const name = localStorage.getItem('name');
     const last_name = localStorage.getItem('last_name');
     return name + " "+last_name;
+  }
+  function makeBrandCompnay() {
+    const company_name = localStorage.getItem('company_name');
+    const seat_name = localStorage.getItem('seat_name');
+    return company_name + " - "+seat_name;
   }
   const { classes, color } = props;
   const appBarClasses = classNames({
@@ -31,10 +36,10 @@ function Header({ ...props }) {
         <div className={classes.flex}>
           {/* this part is the name of the brand (place where we are) in the header */}
           <Button color="transparent" href="#" className={classes.title}>
-            {"SENA - centro de servicio y gestion empresarial"}
+            {makeBrandCompnay()}
           </Button>
           <Button color="transparent" href="#" className={classes.title}>
-            {makeBrand()}
+            {makeBrandUser()}
           </Button>
 
         </div>

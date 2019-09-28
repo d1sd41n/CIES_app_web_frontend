@@ -77,6 +77,8 @@ function SignIn(props) {
     useEffect(() => {
       if (props.isAuthenticated){ // if we are loged, this send us to the dashboard
         props.history.push('/');
+      }else{
+        props.initializingForm();
       }
     });
 
@@ -180,7 +182,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-      onAuth: (username, password) => dispatch(actions.authLogin(username, password)) 
+      onAuth: (username, password) => dispatch(actions.authLogin(username, password)),
+      initializingForm: () => dispatch(actions.initializingForm()),
   }
 }
 

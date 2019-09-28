@@ -88,6 +88,7 @@ const initializingForm = (state, action) => {
         DeleterequestSuccess : false,
         DeleterequestError: null, 
         DeleterequestLoading: false,
+        error: null,
     });
 }
 

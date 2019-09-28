@@ -13,6 +13,8 @@ hay que hacer que los campos invalidos sean diferentes a 400.
 6- en historial se debe organizar el formato de la fecha y la hora desde el backend ademas se debe agregar color
 
 7- se debe limpiar el campo de error al desloguearse
+
+8- el local storage del token y de la informacion del usuario es totalmente insegura
 --------------------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
