@@ -69,7 +69,7 @@ function Visitors(props) {
       <GridItem xs={12} sm={12} md={12}>
         <Card>
           <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Visitantes (NOTA: usuarios de la compañia completa, no de la sede)</h4>
+            <h4 className={classes.cardTitleWhite}>Visitantes</h4>
             <p className={classes.cardCategoryWhite}>
               Aqui se listan todos los Visitantes de esta compañia
             </p>
