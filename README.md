@@ -1,20 +1,4 @@
-### Notas del desarrollador
-1- se debe cambiar el error 400 cuando al llenar un formulario los campos no son validos, ya que el 400 siendo general puede ocurrir porque los campos son invalidos, porque no hya coneccion a internet etc,
-hay que hacer que los campos invalidos sean diferentes a 400.
-
-2- la api visitantes /core/companies/{id_company}/visitors/ entrega todos los usuarios de la compañia y no de una sola sede.
-
-3- En visitantes no se muestra de momento ni fecha de registro, persona quien lo registro y sede donde se registro.
-
-4- el endpoint de visitantes y de items debe ser global y no pertenecer a una sola empresa o sede, es la unica manera sabida por el momento de consultar la data de usuarios e items desde cualquier compañia.
-
-5- en el backend hay un borrado en cascada, al eliminar un usuario se eliminará los visistantes que haya registrado, items(confirmado), posiblemente tambien otros datos como compañias creadas, sedes etc..
-
-6- en historial se debe organizar el formato de la fecha y la hora desde el backend ademas se debe agregar color
-
-7- se debe limpiar el campo de error al desloguearse
-
-8- el local storage del token y de la informacion del usuario es totalmente insegura
+<img src="images/underc.jpg" alt="Logo" width="800" height="800">
 --------------------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
