@@ -1,4 +1,4 @@
-const backendUrl = "http://URL_to_backend.backend";
+const backendUrl = "http://my_url.example";
 
 
 export default backendUrl;
