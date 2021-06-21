@@ -50,6 +50,8 @@ CIES is an app to automatically register items that enter and leave a company fa
 The project is divided into three subprojects: backend, web frontend, mobile frontend; each one in its respective repository. 
 This repository is the Web frontend code source
 
+Backend: [https://github.com/d1sd41n/CIES_app_backend](https://github.com/d1sd41n/CIES_app_backend)  
+Mobile frontend: [https://github.com/d1sd41n/CIES_app_frontend_mobile](https://github.com/d1sd41n/CIES_app_frontend_mobile)
 
 Features implemented in the web frontend:
 * Login and user session
@@ -86,7 +88,7 @@ In order to use this project you must have node.js installed on your operating s
 
 1. Clone the repo
    ```sh
-   https://github.com/d1sd41n/CIES_app_web_frontend.git
+   git clone https://github.com/d1sd41n/CIES_app_web_frontend.git
    ```
 2- Enter the project directory and install the node packages
   ```sh
